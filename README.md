@@ -1,0 +1,82 @@
+# Basic
+
+**Find the right tools for your agent.**
+
+Basic is a task-based search engine for MCP servers and tools. It combines official MCP Registry metadata with reviewed publisher sources, explicit unknown requirements, client setup templates and dated protocol observations. The website and three read-only MCP tools query PostgreSQL; no paid AI API or LLM key is needed.
+
+This is an initial developer-productivity release, not a safety certification. Initialization and listing tools do not prove functional capability. See [How checks work](docs/CHECKS.md), [architecture](ARCHITECTURE.md), [security](SECURITY.md), and [operations](OPERATIONS.md).
+
+## Fresh checkout
+
+Requirements: **Node.js 24.x** (tested 24.19.0), **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. Local PostgreSQL is pinned to 17.6. Run from the repository root. Port 3400 is the website and 55432 is local PostgreSQL. Do not reuse another project's database.
+
+```sh
+git clone https://github.com/agammann/basic.git
+cd basic
+npm install --global pnpm@11.19.0
+pnpm install --frozen-lockfile
+docker compose up -d --wait db
+pnpm db:migrate
+pnpm catalog:curate
+pnpm dev
+```
+
+Open **http://localhost:3400**. The local database defaults in `.env.example` are used when DATABASE_URL is unset; ensure an unrelated DATABASE_URL is not inherited from your shell. Copy `.env.example` to `.env` to customize it (`Copy-Item .env.example .env` in PowerShell, `cp .env.example .env` on Linux/macOS). Never commit `.env`.
+
+The curated bootstrap loads **30 genuine, source-dated profiles**, not synthetic fixtures. It does not run network checks or execute discovered packages. A fresh database correctly shows “Not tested” until checks are run; archived test reports are not imported as new observations.
+
+## Operator commands
+
+```sh
+pnpm db:migrate
+pnpm catalog:curate
+pnpm catalog:sync
+pnpm catalog:reconcile
+pnpm catalog:check
+pnpm catalog:stale
+pnpm catalog:coverage
+pnpm evaluate
+```
+
+`catalog:sync` follows cursors and uses an incremental checkpoint after a completed pass. `catalog:reconcile` performs a full latest-version lifecycle pass. Bad records are quarantined, not published. Review them before treating upstream coverage as complete. Import and check permissions are separate: only exact endpoints in `curation/approved-endpoints.json` are checked. Checks initialize and list schemas only, without credentials or tool execution.
+
+Edit `curation/profiles/*.json`, preserving source dates and evidence scope, then run `catalog:curate`. Existing upstream metadata is not overwritten by bootstrap snapshots. Adding a profile does not approve its endpoint. See OPERATIONS.md for review and removal commands.
+
+## Tests and production build
+
+```sh
+docker exec basic-db-1 createdb -U basic basic_test
+pnpm test
+pnpm typecheck
+pnpm build
+pnpm start
+```
+
+If `basic_test` already exists, omit `createdb`. Tests deliberately truncate that disposable database and refuse a different database name. `TEST_DATABASE_URL` can override the connection for CI but must still name `basic_test`.
+
+With the application running in another terminal:
+
+```sh
+pnpm exec playwright install chromium
+pnpm test:browser
+pnpm test:mcp
+pnpm evaluate
+pnpm backup:test
+```
+
+Browser tests cover desktop and mobile search, strict constraints, profiles, configuration copying, safe rendering and keyboard navigation. The MCP test uses the official SDK over real HTTP and calls all three tools. Routine tests use offline upstream fixtures; `catalog:check` and `catalog:sync` are the explicit live operations. `backup:test` uses the local `basic-db-1` container and creates/removes a disposable restoration database.
+
+`fixtures` requires `ENABLE_FIXTURES=true` and `DATABASE_URL` naming `basic_test`. It loads a deliberately synthetic, unpublished record. Production refuses it.
+
+## MCP connection
+
+Endpoint: `http://localhost:3400/mcp` (Streamable HTTP). Supported tools: `search_servers`, `get_server`, `get_setup_instructions`. See `/connect` for sourced VS Code and Claude Code JSON templates. These templates are syntax-checked; no claim is made that the third-party integrations were installed in those clients.
+
+## Release status and deployment
+
+See [PROGRESS.md](PROGRESS.md) and [reports](reports/) for actual validation, catalog coverage and remaining work. Production uses the included Docker Compose stack with Node, PostgreSQL, Caddy HTTPS, a scheduled worker and backups. Follow [DEPLOYMENT.md](DEPLOYMENT.md). Creating a public source repository does not create a public website or paid hosting.
+
+No source-code redistribution license has been selected or granted for this project. Public repository visibility does not resolve that decision. Third-party packages and source metadata retain their respective terms.
+
+`pnpm start` serves the standalone production build on loopback port 3400. Set BASIC_HOST and PORT explicitly if you need a different local binding. Docker uses its own container listener and private production network. Routine GitHub Actions validation uses stored source snapshots and PostgreSQL fixtures, with no live publisher checks.
+
