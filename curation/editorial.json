@@ -1,0 +1,350 @@
+[
+  {
+    "id": "linear",
+    "tasks": [
+      "project tasks",
+      "issue tracking",
+      "Linear projects"
+    ],
+    "auth": "oauth",
+    "tools": {},
+    "notes": "OAuth and personal API keys are documented. Permissions depend on the authorizing user and chosen credential.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "notion",
+    "tasks": [
+      "Notion workspace search",
+      "project information",
+      "pages databases"
+    ],
+    "auth": "oauth",
+    "tools": {},
+    "notes": "OAuth grants access to content available to the authorizing user; read and update operations are documented.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "atlassian",
+    "tasks": [
+      "Jira issues",
+      "Confluence search",
+      "project information"
+    ],
+    "auth": "oauth",
+    "tools": {},
+    "notes": "OAuth 2.1 is documented. Current documentation recommends v2; registry v1 deployments may lag.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "gitlab",
+    "tasks": [
+      "GitLab repositories",
+      "repository issues",
+      "merge requests"
+    ],
+    "auth": "unknown",
+    "tools": {},
+    "notes": "The collected setup page is a moved-page notice. Exact authentication and tool information remains unknown.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "sentry",
+    "tasks": [
+      "Sentry errors",
+      "debugging issues",
+      "project information"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "The registry package requires SENTRY_ACCESS_TOKEN. Publisher notes AI-powered search can require an LLM provider.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "exa",
+    "tasks": [
+      "web research",
+      "web search",
+      "website content"
+    ],
+    "auth": "unknown",
+    "tools": {
+      "web_search_exa": "Search web content.",
+      "web_fetch_exa": "Retrieve webpage content."
+    },
+    "notes": "Current anonymous usage entitlements and authentication requirements are not established for this deployment.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "brave-search",
+    "tasks": [
+      "web research",
+      "web search",
+      "news search"
+    ],
+    "auth": "api-key",
+    "tools": {
+      "brave_web_search": "Search the Brave web index.",
+      "brave_news_search": "Search news."
+    },
+    "notes": "BRAVE_API_KEY or BRAVE_API_KEY_FILE is required. Read-oriented tools do not establish restricted credential scopes.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "tavily",
+    "tasks": [
+      "web research",
+      "web search",
+      "website extraction"
+    ],
+    "auth": "api-key",
+    "tools": {
+      "tavily-search": "Search web information.",
+      "tavily-extract": "Extract webpage content."
+    },
+    "notes": "The local package requires TAVILY_API_KEY. Separate hosted OAuth setup is also documented.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "firecrawl",
+    "tasks": [
+      "web research",
+      "web search",
+      "website extraction",
+      "web scraping"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "Local cloud API setup uses FIRECRAWL_API_KEY. A separately documented hosted keyless tier limits functionality and quotas.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "perplexity",
+    "tasks": [
+      "web research",
+      "web search",
+      "research answers"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "PERPLEXITY_API_KEY is required; model API usage costs are not established here.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "sourcegraph",
+    "tasks": [
+      "code search",
+      "repository search",
+      "code references"
+    ],
+    "auth": "oauth",
+    "tools": {},
+    "notes": "Requires a Sourcegraph instance hostname; OAuth or access-token authentication is documented.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "nuget",
+    "tasks": [
+      "NuGet packages",
+      ".NET package documentation",
+      "package management"
+    ],
+    "auth": "unknown",
+    "tools": {},
+    "notes": "Requires a supported .NET environment. Review package sources, telemetry and runtime prerequisites.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "gitlab-crunchtools",
+    "tasks": [
+      "GitLab repositories",
+      "repository issues",
+      "merge requests"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "A GitLab token is documented. Exact least-privilege compatibility is not established.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "efficient-gitlab",
+    "tasks": [
+      "GitLab repositories",
+      "repository issues",
+      "merge requests"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "PAT and OAuth modes are documented. Server read-only mode alone does not prove restricted credential support.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "gitlab-jmrplens",
+    "tasks": [
+      "GitLab repositories",
+      "repository issues",
+      "merge requests",
+      "project tasks"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "Publisher explicitly documents read_api tokens accepted with a read-only surface. This is documented support, not an execution test.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "gitlab-docs-nunolima",
+    "tasks": [
+      "GitLab documentation",
+      "GitLab upgrades",
+      "programming documentation"
+    ],
+    "auth": "unknown",
+    "tools": {},
+    "notes": "Version-selected Docker images are documented. Verify the desired documentation version and local runtime.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "gitlab-docs-ozanmutlu",
+    "tasks": [
+      "GitLab documentation",
+      "CI CD documentation",
+      "programming documentation"
+    ],
+    "auth": "none",
+    "tools": {
+      "searchGitLabDocs": "Search GitLab documentation.",
+      "getDocPage": "Retrieve a documentation page.",
+      "listDocSections": "List documentation sections."
+    },
+    "notes": "Publisher shows local setup without credentials and documents Node.js 22.13+ or 24+.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "better-notion",
+    "tasks": [
+      "Notion workspace search",
+      "project information",
+      "Markdown pages"
+    ],
+    "auth": "api-key",
+    "tools": {
+      "read": "Read a Notion page as Markdown.",
+      "search": "Search the Notion workspace.",
+      "list": "List database records or child pages."
+    },
+    "notes": "Requires a Notion integration API key and access to selected pages.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "notion-awkoy",
+    "tasks": [
+      "Notion pages",
+      "project information",
+      "background workspace access"
+    ],
+    "auth": "api-key",
+    "tools": {
+      "notion_describe": "Load operation schemas on demand.",
+      "notion_write": "Perform documented Notion write operations."
+    },
+    "notes": "Token-based access supports unattended operation. Review workspace access and token capabilities.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "notion-n24q02m",
+    "tasks": [
+      "Notion workspace information",
+      "project information",
+      "Markdown pages"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "Notion credential configuration and page sharing are required; inspect publisher setup.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "bitbucket-dc",
+    "tasks": [
+      "Bitbucket repositories",
+      "pull requests",
+      "repository code"
+    ],
+    "auth": "api-key",
+    "tools": {
+      "bitbucket_get_pull_request": "Read a Bitbucket pull request."
+    },
+    "notes": "Community project for self-hosted Atlassian Data Center; a configured instance and token are required. Not endorsed by Atlassian.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "confluence-dc",
+    "tasks": [
+      "Confluence pages",
+      "project information",
+      "documentation search"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "Community project for self-hosted Atlassian Data Center; a configured instance and token are required. Not endorsed by Atlassian.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "jira-dc",
+    "tasks": [
+      "Jira issues",
+      "project tasks",
+      "issue search"
+    ],
+    "auth": "api-key",
+    "tools": {
+      "jira_search_issues": "Search Jira Data Center issues."
+    },
+    "notes": "Community project for self-hosted Atlassian Data Center; a configured instance and token are required. Not endorsed by Atlassian.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "tandem-docs",
+    "tasks": [
+      "Tandem documentation",
+      "agent documentation"
+    ],
+    "auth": "unknown",
+    "tools": {},
+    "notes": "A public remote documentation server is documented. Public availability alone does not establish authentication or price.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "cerebrium-docs",
+    "tasks": [
+      "Cerebrium documentation",
+      "deployment documentation",
+      "hardware configuration"
+    ],
+    "auth": "unknown",
+    "tools": {},
+    "notes": "Registry describes documentation search and feedback submission; this server is not assumed read-only.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "byteask-docs",
+    "tasks": [
+      "embedded development documentation",
+      "programming documentation"
+    ],
+    "auth": "unknown",
+    "tools": {},
+    "notes": "Runtime, credential permissions and service prices are not established from the collected overview.",
+    "pricing": "unknown"
+  },
+  {
+    "id": "superdocs",
+    "tasks": [
+      "document information",
+      "document editing",
+      "project documents"
+    ],
+    "auth": "api-key",
+    "tools": {},
+    "notes": "Publisher describes a hosted Streamable HTTP server with Bearer authentication. Basic does not execute editing or signup capabilities.",
+    "pricing": "unknown"
+  }
+]

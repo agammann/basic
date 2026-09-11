@@ -1,0 +1,16 @@
+{
+  "validatedAt": "2026-09-11T01:53:00Z",
+  "unitIntegrationTests": { "passed": 48, "failed": 0 },
+  "browserJourneys": { "passed": 8, "failed": 0, "devices": ["desktop", "mobile"] },
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "dockerRuntimeBuild": "passed",
+  "dockerWorkerBuild": "passed",
+  "productionEnvironmentSentinelExcluded": true,
+  "productionComposeConfiguration": "valid",
+  "realSdk": { "initialized": true, "toolsListed": true, "toolsCalled": 3, "webParity": true, "untrustedOriginRejected": true },
+  "databaseRoles": { "readerCatalogSelect": true, "readerCatalogUpdate": false, "readerRateLimitWrite": true, "operatorSuperuser": false },
+  "securityReview": { "scanId": "dfe952b5-a48e-48ca-be65-9da888b52641", "originalSourceFilesReviewed": 157, "originalMediumFindings": 3, "fixesImplemented": 3, "regressionTestsPassed": true, "note": "Original scan is a static source review. Fix verification is separate from the original sealed snapshot." },
+  "publicWebsiteDeployed": false,
+  "limitations": ["Linux host firewall and public HTTPS pending a host and domain.", "Client setup templates are syntax validated; client installation not tested.", "Protocol checks do not execute third party tools.", "Local benchmark is not a production capacity claim.", "Source licensing decision remains unresolved."]
+}

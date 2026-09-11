@@ -1,0 +1,84 @@
+{
+  "id": "cerebrium-docs",
+  "registryName": "ai.cerebrium/docs",
+  "name": "Cerebrium Docs",
+  "publisher": "ai.cerebrium",
+  "description": "Search the Cerebrium docs: deployment, cerebrium.toml, hardware, endpoints. Also sends feedback.",
+  "category": "documentation",
+  "tasks": [
+    "Cerebrium documentation",
+    "deployment documentation",
+    "hardware configuration"
+  ],
+  "documentation": "https://cerebrium.ai/docs/getting-started/introduction",
+  "repository": "https://github.com/CerebriumAI/cerebrium-skills",
+  "version": "0.1.1",
+  "collectedAt": "2026-09-09T04:36:37.612Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://cerebrium.ai/docs/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.cerebrium%2Fdocs/versions/0.1.1",
+        "collectedAt": "2026-09-09T04:36:37.612Z",
+        "kind": "documented",
+        "scope": "Registry version 0.1.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Search the Cerebrium docs: deployment, cerebrium.toml, hardware, endpoints. Also sends feedback.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.cerebrium%2Fdocs/versions/0.1.1",
+        "collectedAt": "2026-09-09T04:36:37.612Z",
+        "kind": "documented",
+        "scope": "Registry version 0.1.1"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Registry describes documentation search and feedback submission; this server is not assumed read-only.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.cerebrium%2Fdocs/versions/0.1.1",
+        "collectedAt": "2026-09-09T04:36:37.612Z",
+        "kind": "documented",
+        "scope": "Registry version 0.1.1"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://cerebrium.ai/docs/getting-started/introduction",
+        "collectedAt": "2026-09-09T04:36:37.612Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.1.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.cerebrium%2Fdocs/versions/0.1.1",
+        "collectedAt": "2026-09-09T04:36:37.612Z",
+        "kind": "documented",
+        "scope": "Registry version 0.1.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

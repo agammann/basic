@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.env*
+**/.env*
+**/*.env
+**/*.pem
+**/*.key
+deploy/production.env
+work
+curation/sources/*.txt
+test-results
+playwright-report
+backups
+reports

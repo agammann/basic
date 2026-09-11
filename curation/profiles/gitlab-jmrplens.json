@@ -1,0 +1,94 @@
+{
+  "id": "gitlab-jmrplens",
+  "registryName": "io.github.jmrplens/gitlab-mcp-server",
+  "name": "GitLab by jmrplens",
+  "publisher": "io.github.jmrplens",
+  "description": "Go MCP server for GitLab: 2 dynamic tools reach 1000+ REST/GraphQL actions. Free/CE, no paid tier.",
+  "category": "repositories",
+  "tasks": [
+    "GitLab repositories",
+    "repository issues",
+    "merge requests",
+    "project tasks"
+  ],
+  "documentation": "https://raw.githubusercontent.com/jmrplens/gitlab-mcp-server/main/README.md",
+  "repository": "https://github.com/jmrplens/gitlab-mcp-server",
+  "version": "2.7.5",
+  "collectedAt": "2026-09-09T04:36:31.646Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.jmrp.io/gitlab",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "yes",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.jmrplens%2Fgitlab-mcp-server/versions/2.7.5",
+        "collectedAt": "2026-09-09T04:36:31.646Z",
+        "kind": "documented",
+        "scope": "Registry version 2.7.5"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Go MCP server for GitLab: 2 dynamic tools reach 1000+ REST/GraphQL actions. Free/CE, no paid tier.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/jmrplens/gitlab-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:31.646Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.7.5; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Publisher explicitly documents read_api tokens accepted with a read-only surface. This is documented support, not an execution test.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/jmrplens/gitlab-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:31.646Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.7.5; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/jmrplens/gitlab-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:31.646Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 2.7.5; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.jmrplens%2Fgitlab-mcp-server/versions/2.7.5",
+        "collectedAt": "2026-09-09T04:36:31.646Z",
+        "kind": "documented",
+        "scope": "Registry version 2.7.5"
+      }
+    },
+    {
+      "field": "restricted read credentials",
+      "value": "Publisher explicitly documents read_api tokens accepted by the hosted endpoint with a read-only tool surface. Basic has not tested this with a token.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/jmrplens/gitlab-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:31.646Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.7.5; not a release-tag audit"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

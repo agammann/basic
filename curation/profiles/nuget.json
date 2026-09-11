@@ -1,0 +1,88 @@
+{
+  "id": "nuget",
+  "registryName": "com.microsoft/nuget",
+  "name": "NuGet",
+  "publisher": "com.microsoft",
+  "description": "A Model Context Protocol (MCP) server for NuGet.",
+  "category": "documentation",
+  "tasks": [
+    "NuGet packages",
+    ".NET package documentation",
+    "package management"
+  ],
+  "documentation": "https://raw.githubusercontent.com/NuGet/Home/dev/mcp/README.md",
+  "repository": "https://github.com/NuGet/Home",
+  "version": "1.4.16",
+  "collectedAt": "2026-09-09T04:36:29.518Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "nuget",
+        "name": "NuGet.Mcp.Server",
+        "version": "1.4.16"
+      },
+      "runtime": "Compatible .NET runtime; see publisher setup",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fnuget/versions/1.4.16",
+        "collectedAt": "2026-09-09T04:36:29.518Z",
+        "kind": "documented",
+        "scope": "Registry version 1.4.16"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "A Model Context Protocol (MCP) server for NuGet.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/NuGet/Home/dev/mcp/README.md",
+        "collectedAt": "2026-09-09T04:36:29.518Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.4.16; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Requires a supported .NET environment. Review package sources, telemetry and runtime prerequisites.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/NuGet/Home/dev/mcp/README.md",
+        "collectedAt": "2026-09-09T04:36:29.518Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.4.16; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/NuGet/Home/dev/mcp/README.md",
+        "collectedAt": "2026-09-09T04:36:29.518Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.4.16; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fnuget/versions/1.4.16",
+        "collectedAt": "2026-09-09T04:36:29.518Z",
+        "kind": "documented",
+        "scope": "Registry version 1.4.16"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

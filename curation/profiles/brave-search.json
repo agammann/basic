@@ -1,0 +1,109 @@
+{
+  "id": "brave-search",
+  "registryName": "io.github.brave/brave-search-mcp-server",
+  "name": "Brave Search",
+  "publisher": "io.github.brave",
+  "description": "Brave Search MCP Server: web results, images, videos, rich results, AI summaries, and more.",
+  "category": "research",
+  "tasks": [
+    "web research",
+    "web search",
+    "news search"
+  ],
+  "documentation": "https://raw.githubusercontent.com/brave/brave-search-mcp-server/main/README.md",
+  "repository": "https://github.com/brave/brave-search-mcp-server",
+  "version": "2.1.3",
+  "collectedAt": "2026-09-09T04:36:27.026Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "@brave/brave-search-mcp-server",
+        "version": "2.1.3"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.brave%2Fbrave-search-mcp-server/versions/2.1.3",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "documented",
+        "scope": "Registry version 2.1.3"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "brave_web_search",
+      "description": "Search the Brave web index.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/brave/brave-search-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "name": "brave_news_search",
+      "description": "Search news.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/brave/brave-search-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.1.3; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Brave Search MCP Server: web results, images, videos, rich results, AI summaries, and more.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/brave/brave-search-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "BRAVE_API_KEY or BRAVE_API_KEY_FILE is required. Read-oriented tools do not establish restricted credential scopes.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/brave/brave-search-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/brave/brave-search-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 2.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.brave%2Fbrave-search-mcp-server/versions/2.1.3",
+        "collectedAt": "2026-09-09T04:36:27.026Z",
+        "kind": "documented",
+        "scope": "Registry version 2.1.3"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

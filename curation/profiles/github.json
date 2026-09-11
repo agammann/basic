@@ -1,0 +1,136 @@
+{
+  "id": "github",
+  "registryName": "io.github.github/github-mcp-server",
+  "name": "GitHub",
+  "publisher": "io.github.github",
+  "description": "Search repository code, issues and pull requests on GitHub.",
+  "category": "repositories",
+  "tasks": [
+    "repository issues",
+    "search repositories",
+    "pull requests",
+    "code search"
+  ],
+  "documentation": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+  "repository": "https://github.com/github/github-mcp-server",
+  "version": "1.12.1",
+  "collectedAt": "2026-09-09T04:36:23.765Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://api.githubcopilot.com/mcp/",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.github%2Fgithub-mcp-server/versions/1.12.1",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Registry version 1.12.1"
+      }
+    },
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "oci",
+        "name": "ghcr.io/github/github-mcp-server:1.12.1",
+        "version": "unknown"
+      },
+      "runtime": "Docker",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.github%2Fgithub-mcp-server/versions/1.12.1",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Registry version 1.12.1"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "search_issues",
+      "description": "Search GitHub issues.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.12.1; not a release-tag audit"
+      }
+    },
+    {
+      "name": "search_repositories",
+      "description": "Search GitHub repositories.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.12.1; not a release-tag audit"
+      }
+    },
+    {
+      "name": "search_code",
+      "description": "Search code in GitHub repositories.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.12.1; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Search repository code, issues and pull requests on GitHub.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.12.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "A personal access token is supported. OAuth support varies by host application. Server read-only mode removes write tools but is not itself a restricted credential.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.12.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/github/github-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.12.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.github%2Fgithub-mcp-server/versions/1.12.1",
+        "collectedAt": "2026-09-09T04:36:23.765Z",
+        "kind": "documented",
+        "scope": "Registry version 1.12.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

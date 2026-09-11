@@ -1,0 +1,125 @@
+{
+  "id": "context7",
+  "registryName": "io.github.upstash/context7",
+  "name": "Context7",
+  "publisher": "io.github.upstash",
+  "description": "Find current library documentation and code examples.",
+  "category": "documentation",
+  "tasks": [
+    "programming documentation",
+    "library documentation",
+    "code examples"
+  ],
+  "documentation": "https://raw.githubusercontent.com/upstash/context7/master/README.md",
+  "repository": "https://github.com/upstash/context7",
+  "version": "4.0.5",
+  "collectedAt": "2026-09-09T04:36:22.613Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.context7.com/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.upstash%2Fcontext7/versions/4.0.5",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Registry version 4.0.5"
+      }
+    },
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "@upstash/context7-mcp",
+        "version": "4.0.5"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.upstash%2Fcontext7/versions/4.0.5",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Registry version 4.0.5"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "resolve-library-id",
+      "description": "Resolve a library name to a Context7 library ID.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/upstash/context7/master/README.md",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 4.0.5; not a release-tag audit"
+      }
+    },
+    {
+      "name": "query-docs",
+      "description": "Retrieve documentation for a library ID.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/upstash/context7/master/README.md",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 4.0.5; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Find current library documentation and code examples.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/upstash/context7/master/README.md",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 4.0.5; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "An API key is recommended for higher limits. The manual setup documents an Authorization header; anonymous quota and pricing are not established here.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/upstash/context7/master/README.md",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 4.0.5; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/upstash/context7/master/README.md",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 4.0.5; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.upstash%2Fcontext7/versions/4.0.5",
+        "collectedAt": "2026-09-09T04:36:22.613Z",
+        "kind": "documented",
+        "scope": "Registry version 4.0.5"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

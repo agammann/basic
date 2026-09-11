@@ -1,0 +1,88 @@
+{
+  "id": "sentry",
+  "registryName": "io.github.getsentry/sentry-mcp",
+  "name": "Sentry",
+  "publisher": "io.github.getsentry",
+  "description": "MCP server for Sentry - error monitoring, issue tracking, and debugging for AI assistants",
+  "category": "projects",
+  "tasks": [
+    "Sentry errors",
+    "debugging issues",
+    "project information"
+  ],
+  "documentation": "https://raw.githubusercontent.com/getsentry/sentry-mcp/main/README.md",
+  "repository": "https://github.com/getsentry/sentry-mcp",
+  "version": "0.25.0",
+  "collectedAt": "2026-09-09T04:36:26.021Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "@sentry/mcp-server",
+        "version": "0.25.0"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.getsentry%2Fsentry-mcp/versions/0.25.0",
+        "collectedAt": "2026-09-09T04:36:26.021Z",
+        "kind": "documented",
+        "scope": "Registry version 0.25.0"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "MCP server for Sentry - error monitoring, issue tracking, and debugging for AI assistants",
+      "source": {
+        "url": "https://raw.githubusercontent.com/getsentry/sentry-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.021Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.25.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "The registry package requires SENTRY_ACCESS_TOKEN. Publisher notes AI-powered search can require an LLM provider.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/getsentry/sentry-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.021Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.25.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/getsentry/sentry-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.021Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.25.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.getsentry%2Fsentry-mcp/versions/0.25.0",
+        "collectedAt": "2026-09-09T04:36:26.021Z",
+        "kind": "documented",
+        "scope": "Registry version 0.25.0"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

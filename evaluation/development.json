@@ -1,0 +1,112 @@
+[
+  {
+    "query": "Find programming documentation",
+    "acceptable": ["context7", "microsoft-learn", "gitlab-docs-ozanmutlu"],
+    "filters": {}
+  },
+  {
+    "query": "Search public websites without an API key",
+    "acceptable": ["firecrawl"],
+    "filters": {}
+  },
+  {
+    "query": "Search repository issues",
+    "acceptable": [
+      "github",
+      "gitlab",
+      "gitlab-jmrplens",
+      "gitlab-crunchtools",
+      "efficient-gitlab"
+    ],
+    "filters": {}
+  },
+  {
+    "query": "Read project tasks using restricted credentials",
+    "acceptable": ["gitlab-jmrplens"],
+    "filters": {}
+  },
+  {
+    "query": "Microsoft Azure documentation",
+    "acceptable": ["microsoft-learn"],
+    "filters": {}
+  },
+  {
+    "query": "library documentation",
+    "acceptable": ["context7"],
+    "filters": {}
+  },
+  {
+    "query": "GitHub pull requests",
+    "acceptable": ["github"],
+    "filters": {}
+  },
+  {
+    "query": "Brave news search",
+    "acceptable": ["brave-search"],
+    "filters": {}
+  },
+  {
+    "query": "Tavily web research",
+    "acceptable": ["tavily"],
+    "filters": {}
+  },
+  {
+    "query": "Firecrawl web scraping",
+    "acceptable": ["firecrawl"],
+    "filters": {}
+  },
+  {
+    "query": "Notion Markdown pages",
+    "acceptable": ["better-notion", "notion-n24q02m", "notion-awkoy"],
+    "filters": {}
+  },
+  {
+    "query": "Jira issues",
+    "acceptable": ["jira-dc", "atlassian"],
+    "filters": {}
+  },
+  {
+    "query": "Confluence pages",
+    "acceptable": ["confluence-dc", "atlassian"],
+    "filters": {}
+  },
+  {
+    "query": "Bitbucket pull requests",
+    "acceptable": ["bitbucket-dc"],
+    "filters": {}
+  },
+  {
+    "query": "Sourcegraph code search",
+    "acceptable": ["sourcegraph"],
+    "filters": {}
+  },
+  {
+    "query": "free documentation",
+    "acceptable": ["microsoft-learn"],
+    "filters": {}
+  },
+  {
+    "query": "Cerebrium deployment documentation",
+    "acceptable": ["cerebrium-docs"],
+    "filters": {}
+  },
+  {
+    "query": "bank transfers",
+    "acceptable": [],
+    "filters": {}
+  },
+  {
+    "query": "medical diagnosis",
+    "acceptable": [],
+    "filters": {}
+  },
+  {
+    "query": "web research",
+    "acceptable": [],
+    "filters": {
+      "setup": "local",
+      "auth": "none",
+      "pricing": "free"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{$BASIC_DOMAIN} {
+    request_body {
+        max_size 32KB
+    }
+    header Strict-Transport-Security "max-age=31536000"
+    reverse_proxy web:3400 {
+        header_up X-Basic-Client-IP {remote_host}
+        transport http {
+            response_header_timeout 30s
+        }
+    }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "efficient-gitlab",
+  "registryName": "io.github.detailobsessed/efficient-gitlab",
+  "name": "Efficient GitLab",
+  "publisher": "io.github.detailobsessed",
+  "description": "Token-efficient GitLab MCP: 167 tools via 3 meta-tools, field projection, keyset pagination",
+  "category": "repositories",
+  "tasks": [
+    "GitLab repositories",
+    "repository issues",
+    "merge requests"
+  ],
+  "documentation": "https://raw.githubusercontent.com/detailobsessed/efficient-gitlab-mcp/main/README.md",
+  "repository": "https://github.com/detailobsessed/efficient-gitlab-mcp",
+  "version": "2.33.0",
+  "collectedAt": "2026-09-09T04:36:30.711Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "efficient-gitlab-mcp-server",
+        "version": "2.33.0"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.detailobsessed%2Fefficient-gitlab/versions/2.33.0",
+        "collectedAt": "2026-09-09T04:36:30.711Z",
+        "kind": "documented",
+        "scope": "Registry version 2.33.0"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Token-efficient GitLab MCP: 167 tools via 3 meta-tools, field projection, keyset pagination",
+      "source": {
+        "url": "https://raw.githubusercontent.com/detailobsessed/efficient-gitlab-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:30.711Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.33.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "PAT and OAuth modes are documented. Server read-only mode alone does not prove restricted credential support.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/detailobsessed/efficient-gitlab-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:30.711Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.33.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/detailobsessed/efficient-gitlab-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:30.711Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 2.33.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.detailobsessed%2Fefficient-gitlab/versions/2.33.0",
+        "collectedAt": "2026-09-09T04:36:30.711Z",
+        "kind": "documented",
+        "scope": "Registry version 2.33.0"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

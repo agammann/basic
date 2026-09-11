@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS registry_records(name text PRIMARY KEY, version text NOT NULL, status text NOT NULL CHECK(status IN ('active','deprecated','deleted')), data jsonb NOT NULL, collected_at timestamptz NOT NULL);
+CREATE TABLE IF NOT EXISTS server_versions(key text PRIMARY KEY,name text NOT NULL,version text NOT NULL,data jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS profiles(id text PRIMARY KEY,registry_name text NOT NULL,published boolean NOT NULL DEFAULT false,data jsonb NOT NULL,search_vector tsvector NOT NULL);
+CREATE INDEX IF NOT EXISTS profile_search ON profiles USING gin(search_vector);
+CREATE TABLE IF NOT EXISTS deployments(key text PRIMARY KEY,profile_id text NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,data jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS tools(key text PRIMARY KEY,profile_id text NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,data jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS claims(key text PRIMARY KEY,profile_id text NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,data jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS setup_templates(key text PRIMARY KEY,profile_id text NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,data jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS verification_runs(id bigserial PRIMARY KEY,profile_id text NOT NULL REFERENCES profiles(id),deployment_id text NOT NULL,target text NOT NULL,version text NOT NULL,started_at timestamptz NOT NULL,duration_ms integer NOT NULL,outcome text NOT NULL CHECK(outcome IN ('tools-listed','initialized','auth-required','failed')),fingerprint text,findings text NOT NULL,tools jsonb NOT NULL DEFAULT '[]');
+CREATE INDEX IF NOT EXISTS verification_history ON verification_runs(profile_id,started_at DESC);
+CREATE TABLE IF NOT EXISTS sync_runs(id bigserial PRIMARY KEY,mode text NOT NULL,started_at timestamptz NOT NULL,finished_at timestamptz,status text NOT NULL,cursor text,count integer NOT NULL DEFAULT 0,error text);
+CREATE TABLE IF NOT EXISTS sync_state(key text PRIMARY KEY,value jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS rate_buckets(key text PRIMARY KEY,window_at timestamptz NOT NULL,count integer NOT NULL);

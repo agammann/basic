@@ -1,0 +1,474 @@
+{
+  "development": {
+    "queries": 20,
+    "answerable": 17,
+    "top3Hits": 17,
+    "top3Relevance": 1,
+    "noMatchCases": 3,
+    "correctNoMatch": 3,
+    "hardConstraintViolations": 0,
+    "rows": [
+      {
+        "query": "Find programming documentation",
+        "acceptable": [
+          "context7",
+          "microsoft-learn",
+          "gitlab-docs-ozanmutlu"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "gitlab-docs-ozanmutlu",
+          "superdocs",
+          "microsoft-learn"
+        ],
+        "total": 12,
+        "pass": true
+      },
+      {
+        "query": "Search public websites without an API key",
+        "acceptable": [
+          "firecrawl"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false,
+          "auth": "none"
+        },
+        "top3": [
+          "firecrawl"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Search repository issues",
+        "acceptable": [
+          "github",
+          "gitlab",
+          "gitlab-jmrplens",
+          "gitlab-crunchtools",
+          "efficient-gitlab"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "github",
+          "gitlab-jmrplens",
+          "efficient-gitlab"
+        ],
+        "total": 5,
+        "pass": true
+      },
+      {
+        "query": "Read project tasks using restricted credentials",
+        "acceptable": [
+          "gitlab-jmrplens"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false,
+          "restrictedRead": true
+        },
+        "top3": [
+          "gitlab-jmrplens"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Microsoft Azure documentation",
+        "acceptable": [
+          "microsoft-learn"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "microsoft-learn"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "library documentation",
+        "acceptable": [
+          "context7"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "context7"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "GitHub pull requests",
+        "acceptable": [
+          "github"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "github"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Brave news search",
+        "acceptable": [
+          "brave-search"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "brave-search"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Tavily web research",
+        "acceptable": [
+          "tavily"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "tavily"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Firecrawl web scraping",
+        "acceptable": [
+          "firecrawl"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "firecrawl"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Notion Markdown pages",
+        "acceptable": [
+          "better-notion",
+          "notion-n24q02m",
+          "notion-awkoy"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "better-notion",
+          "notion-n24q02m"
+        ],
+        "total": 2,
+        "pass": true
+      },
+      {
+        "query": "Jira issues",
+        "acceptable": [
+          "jira-dc",
+          "atlassian"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "jira-dc",
+          "atlassian"
+        ],
+        "total": 2,
+        "pass": true
+      },
+      {
+        "query": "Confluence pages",
+        "acceptable": [
+          "confluence-dc",
+          "atlassian"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "confluence-dc"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Bitbucket pull requests",
+        "acceptable": [
+          "bitbucket-dc"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "bitbucket-dc"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Sourcegraph code search",
+        "acceptable": [
+          "sourcegraph"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "sourcegraph"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "free documentation",
+        "acceptable": [
+          "microsoft-learn"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false,
+          "pricing": "free"
+        },
+        "top3": [
+          "microsoft-learn"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Cerebrium deployment documentation",
+        "acceptable": [
+          "cerebrium-docs"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "cerebrium-docs"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "bank transfers",
+        "acceptable": [],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [],
+        "total": 0,
+        "pass": true
+      },
+      {
+        "query": "medical diagnosis",
+        "acceptable": [],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [],
+        "total": 0,
+        "pass": true
+      },
+      {
+        "query": "web research",
+        "acceptable": [],
+        "appliedFilters": {
+          "setup": "local",
+          "auth": "none",
+          "pricing": "free",
+          "includeUnknown": false
+        },
+        "top3": [],
+        "total": 0,
+        "pass": true
+      }
+    ]
+  },
+  "held-out": {
+    "queries": 10,
+    "answerable": 8,
+    "top3Hits": 8,
+    "top3Relevance": 1,
+    "noMatchCases": 2,
+    "correctNoMatch": 2,
+    "hardConstraintViolations": 0,
+    "rows": [
+      {
+        "query": "Microsoft code samples",
+        "acceptable": [
+          "microsoft-learn"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "microsoft-learn"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "current library docs",
+        "acceptable": [
+          "context7"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "context7"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "GitLab merge requests",
+        "acceptable": [
+          "gitlab-jmrplens",
+          "gitlab",
+          "gitlab-crunchtools",
+          "efficient-gitlab"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "gitlab-crunchtools",
+          "gitlab",
+          "efficient-gitlab"
+        ],
+        "total": 4,
+        "pass": true
+      },
+      {
+        "query": "Brave web search",
+        "acceptable": [
+          "brave-search"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "brave-search"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "Tandem documentation",
+        "acceptable": [
+          "tandem-docs"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "tandem-docs"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "repository issues",
+        "acceptable": [
+          "gitlab-jmrplens"
+        ],
+        "appliedFilters": {
+          "restrictedRead": true,
+          "includeUnknown": false
+        },
+        "top3": [
+          "gitlab-jmrplens"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "websites without an API key",
+        "acceptable": [
+          "firecrawl"
+        ],
+        "appliedFilters": {
+          "setup": "remote",
+          "includeUnknown": false,
+          "auth": "none"
+        },
+        "top3": [
+          "firecrawl"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "NuGet packages",
+        "acceptable": [
+          "nuget"
+        ],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [
+          "nuget"
+        ],
+        "total": 1,
+        "pass": true
+      },
+      {
+        "query": "book airline tickets",
+        "acceptable": [],
+        "appliedFilters": {
+          "includeUnknown": false
+        },
+        "top3": [],
+        "total": 0,
+        "pass": true
+      },
+      {
+        "query": "Confluence pages",
+        "acceptable": [],
+        "appliedFilters": {
+          "auth": "none",
+          "pricing": "free",
+          "includeUnknown": false
+        },
+        "top3": [],
+        "total": 0,
+        "pass": true
+      }
+    ]
+  },
+  "benchmark": {
+    "environment": {
+      "platform": "win32",
+      "release": "10.0.26200",
+      "arch": "x64",
+      "cpu": "AMD Ryzen 7 7840HS w/ Radeon 780M Graphics     ",
+      "memoryGiB": 15,
+      "node": "v24.19.0",
+      "database": "PostgreSQL 17.6 in Docker Desktop"
+    },
+    "workload": "20 warmups, then 200 PostgreSQL-backed searches, concurrency 5, 30 profiles; direct shared search service, not HTTP",
+    "medianMs": 6.294499999999971,
+    "p95Ms": 9.37779999999998,
+    "maxMs": 42.618400000000065,
+    "productionCapacityClaim": false
+  },
+  "generatedAt": "2026-09-11T01:48:49.770Z",
+  "passed": true
+}

@@ -1,0 +1,109 @@
+{
+  "id": "tavily",
+  "registryName": "io.github.tavily-ai/tavily-mcp",
+  "name": "Tavily",
+  "publisher": "io.github.tavily-ai",
+  "description": "MCP server for advanced web search using Tavily",
+  "category": "research",
+  "tasks": [
+    "web research",
+    "web search",
+    "website extraction"
+  ],
+  "documentation": "https://raw.githubusercontent.com/tavily-ai/tavily-mcp/main/README.md",
+  "repository": "https://github.com/tavily-ai/tavily-mcp",
+  "version": "0.2.15",
+  "collectedAt": "2026-09-09T04:36:27.451Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "tavily-mcp",
+        "version": "0.2.15"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.tavily-ai%2Ftavily-mcp/versions/0.2.15",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "documented",
+        "scope": "Registry version 0.2.15"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "tavily-search",
+      "description": "Search web information.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/tavily-ai/tavily-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.2.15; not a release-tag audit"
+      }
+    },
+    {
+      "name": "tavily-extract",
+      "description": "Extract webpage content.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/tavily-ai/tavily-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.2.15; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "MCP server for advanced web search using Tavily",
+      "source": {
+        "url": "https://raw.githubusercontent.com/tavily-ai/tavily-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.2.15; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "The local package requires TAVILY_API_KEY. Separate hosted OAuth setup is also documented.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/tavily-ai/tavily-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.2.15; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/tavily-ai/tavily-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.2.15; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.tavily-ai%2Ftavily-mcp/versions/0.2.15",
+        "collectedAt": "2026-09-09T04:36:27.451Z",
+        "kind": "documented",
+        "scope": "Registry version 0.2.15"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tandem-docs",
+  "registryName": "ac.tandem/docs-mcp",
+  "name": "Tandem Docs",
+  "publisher": "ac.tandem",
+  "description": "Remote MCP server for Tandem docs, install guides, SDKs, workflows, and agent setup help.",
+  "category": "documentation",
+  "tasks": [
+    "Tandem documentation",
+    "agent documentation"
+  ],
+  "documentation": "https://tandem.ac/docs-mcp",
+  "repository": "https://github.com/frumu-ai/tandem",
+  "version": "0.3.2",
+  "collectedAt": "2026-09-09T04:36:36.686Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://tandem.ac/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ac.tandem%2Fdocs-mcp/versions/0.3.2",
+        "collectedAt": "2026-09-09T04:36:36.686Z",
+        "kind": "documented",
+        "scope": "Registry version 0.3.2"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Remote MCP server for Tandem docs, install guides, SDKs, workflows, and agent setup help.",
+      "source": {
+        "url": "https://tandem.ac/docs-mcp",
+        "collectedAt": "2026-09-09T04:36:36.686Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.3.2; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "A public remote documentation server is documented. Public availability alone does not establish authentication or price.",
+      "source": {
+        "url": "https://tandem.ac/docs-mcp",
+        "collectedAt": "2026-09-09T04:36:36.686Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.3.2; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://tandem.ac/docs-mcp",
+        "collectedAt": "2026-09-09T04:36:36.686Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.3.2; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ac.tandem%2Fdocs-mcp/versions/0.3.2",
+        "collectedAt": "2026-09-09T04:36:36.686Z",
+        "kind": "documented",
+        "scope": "Registry version 0.3.2"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

@@ -1,0 +1,105 @@
+{
+  "id": "exa",
+  "registryName": "ai.exa/exa",
+  "name": "Exa",
+  "publisher": "ai.exa",
+  "description": "Fast, intelligent web search and web crawling.\n\nNew mcp tool: Exa-code is a context tool for coding ",
+  "category": "research",
+  "tasks": [
+    "web research",
+    "web search",
+    "website content"
+  ],
+  "documentation": "https://raw.githubusercontent.com/exa-labs/exa-mcp-server/main/README.md",
+  "repository": "https://github.com/exa-labs/exa-mcp-server",
+  "version": "3.1.3",
+  "collectedAt": "2026-09-09T04:36:26.459Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.exa.ai/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.exa%2Fexa/versions/3.1.3",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "documented",
+        "scope": "Registry version 3.1.3"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "web_search_exa",
+      "description": "Search web content.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/exa-labs/exa-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "name": "web_fetch_exa",
+      "description": "Retrieve webpage content.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/exa-labs/exa-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.1.3; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Fast, intelligent web search and web crawling.\n\nNew mcp tool: Exa-code is a context tool for coding ",
+      "source": {
+        "url": "https://raw.githubusercontent.com/exa-labs/exa-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Current anonymous usage entitlements and authentication requirements are not established for this deployment.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/exa-labs/exa-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/exa-labs/exa-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 3.1.3; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.exa%2Fexa/versions/3.1.3",
+        "collectedAt": "2026-09-09T04:36:26.459Z",
+        "kind": "documented",
+        "scope": "Registry version 3.1.3"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

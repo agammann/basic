@@ -1,0 +1,83 @@
+{
+  "id": "byteask-docs",
+  "registryName": "ai.byteask/embedded-docs",
+  "name": "ByteAsk Embedded Docs",
+  "publisher": "ai.byteask",
+  "description": "Page-cited retrieval for embedded docs, datasheets, MISRA, CMSIS, and RTOS references.",
+  "category": "documentation",
+  "tasks": [
+    "embedded development documentation",
+    "programming documentation"
+  ],
+  "documentation": "https://docs.byteask.ai/embedded",
+  "repository": "https://github.com/ByteAsk/ByteAsk-Embedded-MCP",
+  "version": "1.0.1",
+  "collectedAt": "2026-09-09T04:36:38.599Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.byteask.ai/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.byteask%2Fembedded-docs/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:38.599Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Page-cited retrieval for embedded docs, datasheets, MISRA, CMSIS, and RTOS references.",
+      "source": {
+        "url": "https://docs.byteask.ai/embedded",
+        "collectedAt": "2026-09-09T04:36:38.599Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Runtime, credential permissions and service prices are not established from the collected overview.",
+      "source": {
+        "url": "https://docs.byteask.ai/embedded",
+        "collectedAt": "2026-09-09T04:36:38.599Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://docs.byteask.ai/embedded",
+        "collectedAt": "2026-09-09T04:36:38.599Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.byteask%2Fembedded-docs/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:38.599Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

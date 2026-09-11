@@ -1,0 +1,83 @@
+{
+  "id": "linear",
+  "registryName": "app.linear/linear",
+  "name": "Linear",
+  "publisher": "app.linear",
+  "description": "MCP server for Linear project management and issue tracking",
+  "category": "projects",
+  "tasks": [
+    "project tasks",
+    "issue tracking",
+    "Linear projects"
+  ],
+  "documentation": "https://linear.app/docs/mcp",
+  "version": "1.0.1",
+  "collectedAt": "2026-09-09T04:36:24.239Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.linear.app/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "oauth",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/app.linear%2Flinear/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:24.239Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "MCP server for Linear project management and issue tracking",
+      "source": {
+        "url": "https://linear.app/docs/mcp",
+        "collectedAt": "2026-09-09T04:36:24.239Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "OAuth and personal API keys are documented. Permissions depend on the authorizing user and chosen credential.",
+      "source": {
+        "url": "https://linear.app/docs/mcp",
+        "collectedAt": "2026-09-09T04:36:24.239Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://linear.app/docs/mcp",
+        "collectedAt": "2026-09-09T04:36:24.239Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/app.linear%2Flinear/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:24.239Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

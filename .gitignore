@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env
+.env.local
+coverage/
+test-results/
+playwright-report/
+backups/
+*.tsbuildinfo
+work/
+curation/sources/*.txt
+deploy/production.env

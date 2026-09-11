@@ -1,0 +1,31 @@
+{
+  "server": {
+    "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.ozanmutlu/gitlab-docs",
+    "description": "Search and browse 2,900+ official GitLab documentation pages via MCP",
+    "repository": {
+      "url": "https://github.com/ozanmutlu/Gitlab-Docs-MCP",
+      "source": "github"
+    },
+    "version": "1.1.12",
+    "packages": [
+      {
+        "registryType": "npm",
+        "identifier": "gitlab-docs-mcp",
+        "version": "1.1.12",
+        "transport": {
+          "type": "stdio"
+        }
+      }
+    ]
+  },
+  "_meta": {
+    "io.modelcontextprotocol.registry/official": {
+      "status": "active",
+      "statusChangedAt": "2026-09-07T08:46:04.281947Z",
+      "publishedAt": "2026-09-07T08:46:04.281947Z",
+      "updatedAt": "2026-09-07T08:46:04.281947Z",
+      "isLatest": true
+    }
+  }
+}

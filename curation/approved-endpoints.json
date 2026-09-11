@@ -1,0 +1,58 @@
+[
+  {
+    "profileId": "microsoft-learn",
+    "deploymentId": "remote-0",
+    "endpoint": "https://learn.microsoft.com/api/mcp",
+    "reviewedAt": "2026-09-09T04:35:00.000Z",
+    "reason": "Registry deployment and publisher README agree; approve initialization and listing only."
+  },
+  {
+    "profileId": "context7",
+    "deploymentId": "remote-0",
+    "endpoint": "https://mcp.context7.com/mcp",
+    "reviewedAt": "2026-09-09T04:35:00.000Z",
+    "reason": "Registry deployment and publisher README agree; anonymous protocol check only."
+  },
+  {
+    "profileId": "github",
+    "deploymentId": "remote-0",
+    "endpoint": "https://api.githubcopilot.com/mcp/",
+    "reviewedAt": "2026-09-09T04:35:00.000Z",
+    "reason": "Publisher remote GitHub endpoint; classify authentication response without credentials."
+  },
+  {
+    "profileId": "exa",
+    "deploymentId": "remote-0",
+    "endpoint": "https://mcp.exa.ai/mcp",
+    "reviewedAt": "2026-09-09T04:54:02.330Z",
+    "reason": "Reviewed genuine registry and publisher endpoint. Approve anonymous MCP initialization and schema listing only; no tool calls."
+  },
+  {
+    "profileId": "tandem-docs",
+    "deploymentId": "remote-0",
+    "endpoint": "https://tandem.ac/mcp",
+    "reviewedAt": "2026-09-09T04:54:02.332Z",
+    "reason": "Reviewed genuine registry and publisher endpoint. Approve anonymous MCP initialization and schema listing only; no tool calls."
+  },
+  {
+    "profileId": "cerebrium-docs",
+    "deploymentId": "remote-0",
+    "endpoint": "https://cerebrium.ai/docs/mcp",
+    "reviewedAt": "2026-09-09T04:54:02.334Z",
+    "reason": "Reviewed genuine registry and publisher endpoint. Approve anonymous MCP initialization and schema listing only; no tool calls."
+  },
+  {
+    "profileId": "firecrawl",
+    "deploymentId": "hosted-keyless",
+    "endpoint": "https://mcp.firecrawl.dev/v2/mcp",
+    "reviewedAt": "2026-09-09T04:54:02.335Z",
+    "reason": "Reviewed genuine registry and publisher endpoint. Approve anonymous MCP initialization and schema listing only; no tool calls."
+  },
+  {
+    "profileId": "linear",
+    "deploymentId": "remote-0",
+    "endpoint": "https://mcp.linear.app/mcp",
+    "reviewedAt": "2026-09-09T04:54:02.336Z",
+    "reason": "Reviewed genuine registry and publisher endpoint. Approve anonymous MCP initialization and schema listing only; no tool calls."
+  }
+]

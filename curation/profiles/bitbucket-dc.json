@@ -1,0 +1,99 @@
+{
+  "id": "bitbucket-dc",
+  "registryName": "io.github.MrRefactoring/atlassian-dc-mcp-bitbucket",
+  "name": "Bitbucket Data Center by MrRefactoring",
+  "publisher": "io.github.MrRefactoring",
+  "description": "MCP server for Atlassian Bitbucket Data Center - interact with repositories and code",
+  "category": "repositories",
+  "tasks": [
+    "Bitbucket repositories",
+    "pull requests",
+    "repository code"
+  ],
+  "documentation": "https://raw.githubusercontent.com/MrRefactoring/atlassian-dc-mcp/master/README.md",
+  "repository": "https://github.com/MrRefactoring/atlassian-dc-mcp",
+  "version": "0.5.0",
+  "collectedAt": "2026-09-09T04:36:35.272Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "bitbucket-datacenter-mcp",
+        "version": "0.5.0"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.MrRefactoring%2Fatlassian-dc-mcp-bitbucket/versions/0.5.0",
+        "collectedAt": "2026-09-09T04:36:35.272Z",
+        "kind": "documented",
+        "scope": "Registry version 0.5.0"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "bitbucket_get_pull_request",
+      "description": "Read a Bitbucket pull request.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MrRefactoring/atlassian-dc-mcp/master/README.md",
+        "collectedAt": "2026-09-09T04:36:35.272Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.5.0; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "MCP server for Atlassian Bitbucket Data Center - interact with repositories and code",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MrRefactoring/atlassian-dc-mcp/master/README.md",
+        "collectedAt": "2026-09-09T04:36:35.272Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.5.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Community project for self-hosted Atlassian Data Center; a configured instance and token are required. Not endorsed by Atlassian.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MrRefactoring/atlassian-dc-mcp/master/README.md",
+        "collectedAt": "2026-09-09T04:36:35.272Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.5.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MrRefactoring/atlassian-dc-mcp/master/README.md",
+        "collectedAt": "2026-09-09T04:36:35.272Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.5.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.MrRefactoring%2Fatlassian-dc-mcp-bitbucket/versions/0.5.0",
+        "collectedAt": "2026-09-09T04:36:35.272Z",
+        "kind": "documented",
+        "scope": "Registry version 0.5.0"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

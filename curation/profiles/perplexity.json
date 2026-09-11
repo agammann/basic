@@ -1,0 +1,87 @@
+{
+  "id": "perplexity",
+  "registryName": "ai.perplexity/mcp-server",
+  "name": "Perplexity",
+  "publisher": "ai.perplexity",
+  "description": "Real-time web search, reasoning, and research through Perplexity's API",
+  "category": "research",
+  "tasks": [
+    "web research",
+    "web search",
+    "research answers"
+  ],
+  "documentation": "https://raw.githubusercontent.com/perplexityai/modelcontextprotocol/main/README.md",
+  "version": "1.2.1",
+  "collectedAt": "2026-09-09T04:36:28.571Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "@perplexity-ai/mcp-server",
+        "version": "1.2.1"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.perplexity%2Fmcp-server/versions/1.2.1",
+        "collectedAt": "2026-09-09T04:36:28.571Z",
+        "kind": "documented",
+        "scope": "Registry version 1.2.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Real-time web search, reasoning, and research through Perplexity's API",
+      "source": {
+        "url": "https://raw.githubusercontent.com/perplexityai/modelcontextprotocol/main/README.md",
+        "collectedAt": "2026-09-09T04:36:28.571Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.2.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "PERPLEXITY_API_KEY is required; model API usage costs are not established here.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/perplexityai/modelcontextprotocol/main/README.md",
+        "collectedAt": "2026-09-09T04:36:28.571Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.2.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/perplexityai/modelcontextprotocol/main/README.md",
+        "collectedAt": "2026-09-09T04:36:28.571Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.2.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.perplexity%2Fmcp-server/versions/1.2.1",
+        "collectedAt": "2026-09-09T04:36:28.571Z",
+        "kind": "documented",
+        "scope": "Registry version 1.2.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

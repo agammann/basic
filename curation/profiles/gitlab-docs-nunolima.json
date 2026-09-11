@@ -1,0 +1,88 @@
+{
+  "id": "gitlab-docs-nunolima",
+  "registryName": "io.github.nunolima/gitlab-docs-mcp",
+  "name": "GitLab Docs by nunolima",
+  "publisher": "io.github.nunolima",
+  "description": "Searchable access to GitLab documentation from multiple repositories with full-text search.",
+  "category": "documentation",
+  "tasks": [
+    "GitLab documentation",
+    "GitLab upgrades",
+    "programming documentation"
+  ],
+  "documentation": "https://raw.githubusercontent.com/nunolima/gitlab-docs-mcp/main/README.md",
+  "repository": "https://github.com/nunolima/gitlab-docs-mcp",
+  "version": "0.1.1",
+  "collectedAt": "2026-09-09T04:36:32.290Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "oci",
+        "name": "docker.io/nunolima/gitlab-docs-mcp:18.7",
+        "version": "unknown"
+      },
+      "runtime": "Docker",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.nunolima%2Fgitlab-docs-mcp/versions/0.1.1",
+        "collectedAt": "2026-09-09T04:36:32.290Z",
+        "kind": "documented",
+        "scope": "Registry version 0.1.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Searchable access to GitLab documentation from multiple repositories with full-text search.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/nunolima/gitlab-docs-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:32.290Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.1.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Version-selected Docker images are documented. Verify the desired documentation version and local runtime.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/nunolima/gitlab-docs-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:32.290Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.1.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/nunolima/gitlab-docs-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:32.290Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.1.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.nunolima%2Fgitlab-docs-mcp/versions/0.1.1",
+        "collectedAt": "2026-09-09T04:36:32.290Z",
+        "kind": "documented",
+        "scope": "Registry version 0.1.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

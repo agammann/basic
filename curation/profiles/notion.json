@@ -1,0 +1,99 @@
+{
+  "id": "notion",
+  "registryName": "com.notion/mcp",
+  "name": "Notion",
+  "publisher": "com.notion",
+  "description": "Official Notion MCP server",
+  "category": "projects",
+  "tasks": [
+    "Notion workspace search",
+    "project information",
+    "pages databases"
+  ],
+  "documentation": "https://developers.notion.com/guides/mcp/overview",
+  "version": "1.0.1",
+  "collectedAt": "2026-09-09T04:36:24.816Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.notion.com/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "oauth",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.notion%2Fmcp/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:24.816Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    },
+    {
+      "id": "remote-1",
+      "kind": "remote",
+      "transport": "sse",
+      "endpoint": "https://mcp.notion.com/sse",
+      "runtime": "An MCP client supporting sse",
+      "auth": "oauth",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.notion%2Fmcp/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:24.816Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Official Notion MCP server",
+      "source": {
+        "url": "https://developers.notion.com/guides/mcp/overview",
+        "collectedAt": "2026-09-09T04:36:24.816Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "OAuth grants access to content available to the authorizing user; read and update operations are documented.",
+      "source": {
+        "url": "https://developers.notion.com/guides/mcp/overview",
+        "collectedAt": "2026-09-09T04:36:24.816Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://developers.notion.com/guides/mcp/overview",
+        "collectedAt": "2026-09-09T04:36:24.816Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.notion%2Fmcp/versions/1.0.1",
+        "collectedAt": "2026-09-09T04:36:24.816Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

@@ -1,0 +1,109 @@
+{
+  "id": "notion-awkoy",
+  "registryName": "io.github.awkoy/notion-mcp-server",
+  "name": "Notion by awkoy",
+  "publisher": "io.github.awkoy",
+  "description": "Token-auth Notion MCP: pages, databases, blocks, comments, files. Runs headless in CI and agents.",
+  "category": "projects",
+  "tasks": [
+    "Notion pages",
+    "project information",
+    "background workspace access"
+  ],
+  "documentation": "https://raw.githubusercontent.com/awkoy/notion-mcp-server/main/README.md",
+  "repository": "https://github.com/awkoy/notion-mcp-server",
+  "version": "3.0.0",
+  "collectedAt": "2026-09-09T04:36:34.030Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "notion-mcp-server",
+        "version": "3.0.0"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.awkoy%2Fnotion-mcp-server/versions/3.0.0",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "documented",
+        "scope": "Registry version 3.0.0"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "notion_describe",
+      "description": "Load operation schemas on demand.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/awkoy/notion-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "name": "notion_write",
+      "description": "Perform documented Notion write operations.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/awkoy/notion-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.0.0; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Token-auth Notion MCP: pages, databases, blocks, comments, files. Runs headless in CI and agents.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/awkoy/notion-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Token-based access supports unattended operation. Review workspace access and token capabilities.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/awkoy/notion-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/awkoy/notion-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 3.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.awkoy%2Fnotion-mcp-server/versions/3.0.0",
+        "collectedAt": "2026-09-09T04:36:34.030Z",
+        "kind": "documented",
+        "scope": "Registry version 3.0.0"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

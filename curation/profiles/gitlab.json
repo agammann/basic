@@ -1,0 +1,84 @@
+{
+  "id": "gitlab",
+  "registryName": "com.gitlab/mcp",
+  "name": "GitLab",
+  "publisher": "com.gitlab",
+  "description": "Official GitLab MCP Server",
+  "category": "repositories",
+  "tasks": [
+    "GitLab repositories",
+    "repository issues",
+    "merge requests"
+  ],
+  "documentation": "https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/",
+  "repository": "https://gitlab.com/gitlab-org/gitlab",
+  "version": "0.0.1",
+  "collectedAt": "2026-09-09T04:36:25.614Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://gitlab.com/api/v4/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "unknown",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.gitlab%2Fmcp/versions/0.0.1",
+        "collectedAt": "2026-09-09T04:36:25.614Z",
+        "kind": "documented",
+        "scope": "Registry version 0.0.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Official GitLab MCP Server",
+      "source": {
+        "url": "https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/",
+        "collectedAt": "2026-09-09T04:36:25.614Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "The collected setup page is a moved-page notice. Exact authentication and tool information remains unknown.",
+      "source": {
+        "url": "https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/",
+        "collectedAt": "2026-09-09T04:36:25.614Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/",
+        "collectedAt": "2026-09-09T04:36:25.614Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.0.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.gitlab%2Fmcp/versions/0.0.1",
+        "collectedAt": "2026-09-09T04:36:25.614Z",
+        "kind": "documented",
+        "scope": "Registry version 0.0.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

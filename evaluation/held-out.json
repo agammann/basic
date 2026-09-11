@@ -1,0 +1,64 @@
+[
+  {
+    "query": "Microsoft code samples",
+    "acceptable": ["microsoft-learn"],
+    "filters": {}
+  },
+  {
+    "query": "current library docs",
+    "acceptable": ["context7"],
+    "filters": {}
+  },
+  {
+    "query": "GitLab merge requests",
+    "acceptable": [
+      "gitlab-jmrplens",
+      "gitlab",
+      "gitlab-crunchtools",
+      "efficient-gitlab"
+    ],
+    "filters": {}
+  },
+  {
+    "query": "Brave web search",
+    "acceptable": ["brave-search"],
+    "filters": {}
+  },
+  {
+    "query": "Tandem documentation",
+    "acceptable": ["tandem-docs"],
+    "filters": {}
+  },
+  {
+    "query": "repository issues",
+    "acceptable": ["gitlab-jmrplens"],
+    "filters": {
+      "restrictedRead": true
+    }
+  },
+  {
+    "query": "websites without an API key",
+    "acceptable": ["firecrawl"],
+    "filters": {
+      "setup": "remote"
+    }
+  },
+  {
+    "query": "NuGet packages",
+    "acceptable": ["nuget"],
+    "filters": {}
+  },
+  {
+    "query": "book airline tickets",
+    "acceptable": [],
+    "filters": {}
+  },
+  {
+    "query": "Confluence pages",
+    "acceptable": [],
+    "filters": {
+      "auth": "none",
+      "pricing": "free"
+    }
+  }
+]

@@ -1,0 +1,108 @@
+{
+  "id": "notion-n24q02m",
+  "registryName": "io.github.n24q02m/better-notion-mcp",
+  "name": "Better Notion by n24q02m",
+  "publisher": "io.github.n24q02m",
+  "description": "Markdown-first MCP server for Notion API with 8 composite tools and 39 actions.",
+  "category": "projects",
+  "tasks": [
+    "Notion workspace information",
+    "project information",
+    "Markdown pages"
+  ],
+  "documentation": "https://raw.githubusercontent.com/n24q02m/better-notion-mcp/main/README.md",
+  "repository": "https://github.com/n24q02m/better-notion-mcp.git",
+  "version": "2.40.1",
+  "collectedAt": "2026-09-09T04:36:34.769Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "@n24q02m/better-notion-mcp",
+        "version": "2.40.1"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.n24q02m%2Fbetter-notion-mcp/versions/2.40.1",
+        "collectedAt": "2026-09-09T04:36:34.769Z",
+        "kind": "documented",
+        "scope": "Registry version 2.40.1"
+      }
+    },
+    {
+      "id": "local-1",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "oci",
+        "name": "docker.io/n24q02m/better-notion-mcp:latest",
+        "version": "unknown"
+      },
+      "runtime": "Docker",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.n24q02m%2Fbetter-notion-mcp/versions/2.40.1",
+        "collectedAt": "2026-09-09T04:36:34.769Z",
+        "kind": "documented",
+        "scope": "Registry version 2.40.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Markdown-first MCP server for Notion API with 8 composite tools and 39 actions.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/n24q02m/better-notion-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.769Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.40.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Notion credential configuration and page sharing are required; inspect publisher setup.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/n24q02m/better-notion-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.769Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 2.40.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/n24q02m/better-notion-mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:34.769Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 2.40.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.n24q02m%2Fbetter-notion-mcp/versions/2.40.1",
+        "collectedAt": "2026-09-09T04:36:34.769Z",
+        "kind": "documented",
+        "scope": "Registry version 2.40.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

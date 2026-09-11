@@ -1,0 +1,45 @@
+name: Basic validation
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17.6-alpine
+        env:
+          POSTGRES_USER: basic
+          POSTGRES_PASSWORD: basic_ci_only
+          POSTGRES_DB: basic
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U basic -d basic"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://basic:basic_ci_only@localhost:5432/basic
+      TEST_DATABASE_URL: postgresql://basic:basic_ci_only@localhost:5432/basic_test
+      APP_ORIGIN: http://localhost:3400
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24.19.0"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: docker exec ${{ job.services.postgres.id }} createdb -U basic basic_test
+      - run: pnpm db:migrate && pnpm catalog:curate
+      - run: pnpm typecheck && pnpm test && pnpm evaluate && pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Browser and SDK journeys
+        run: |
+          pnpm start > /tmp/basic-server.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:3400/ready; then break; fi
+            sleep 1
+          done
+          pnpm test:browser
+          pnpm test:mcp

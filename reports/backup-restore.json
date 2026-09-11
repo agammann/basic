@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-09-11T01:52:50.627Z",
+  "database": "PostgreSQL 17.6 in Docker",
+  "source": "basic",
+  "disposableTarget": "basic_restore_test_1789091561599",
+  "counts": [
+    "claims:122",
+    "profiles:30",
+    "registry:28319",
+    "verification:11"
+  ],
+  "searchCount": 12,
+  "passed": true,
+  "limitation": "Local dump/restore test; not an off-host disaster recovery drill."
+}

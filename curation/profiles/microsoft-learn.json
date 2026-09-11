@@ -1,0 +1,115 @@
+{
+  "id": "microsoft-learn",
+  "registryName": "com.microsoft/microsoft-learn-mcp",
+  "name": "Microsoft Learn",
+  "publisher": "com.microsoft",
+  "description": "Search Microsoft technical documentation and code samples.",
+  "category": "documentation",
+  "tasks": [
+    "programming documentation",
+    "Microsoft Azure documentation",
+    ".NET code samples"
+  ],
+  "documentation": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+  "repository": "https://github.com/MicrosoftDocs/mcp",
+  "version": "1.0.0",
+  "collectedAt": "2026-09-09T04:36:23.240Z",
+  "deployments": [
+    {
+      "id": "remote-0",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://learn.microsoft.com/api/mcp",
+      "runtime": "An MCP client supporting streamable-http",
+      "auth": "none",
+      "pricing": "free",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/1.0.0",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.0"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "microsoft_docs_search",
+      "description": "Search Microsoft technical documentation.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "name": "microsoft_docs_fetch",
+      "description": "Retrieve a Microsoft documentation page.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "name": "microsoft_code_sample_search",
+      "description": "Find Microsoft code samples.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.0; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Search Microsoft technical documentation and code samples.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Publisher documents this hosted endpoint as free with no API key or login.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Publisher documents this hosted service as free.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/mcp/main/README.md",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.0.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/1.0.0",
+        "collectedAt": "2026-09-09T04:36:23.240Z",
+        "kind": "documented",
+        "scope": "Registry version 1.0.0"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

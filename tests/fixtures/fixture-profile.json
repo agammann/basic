@@ -1,0 +1,13 @@
+{
+  "id": "fixture-example",
+  "name": "OFFLINE FIXTURE — not a real server",
+  "published": false,
+  "description": "Synthetic development fixture. Never live evidence.",
+  "category": "documentation",
+  "collectedAt": "2020-01-01T00:00:00.000Z",
+  "deployments": [],
+  "tasks": ["fixture"],
+  "tools": [],
+  "claims": [],
+  "unknowns": ["All fixture content is synthetic."]
+}

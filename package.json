@@ -1,0 +1,56 @@
+{
+  "name": "basic",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "packageManager": "pnpm@11.19.0",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3400",
+    "build": "next build",
+    "start": "node scripts/start.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "db:migrate": "tsx scripts/operator.ts migrate",
+    "catalog:curate": "tsx scripts/operator.ts curate",
+    "catalog:sync": "tsx scripts/operator.ts sync",
+    "catalog:reconcile": "tsx scripts/operator.ts reconcile",
+    "catalog:check": "tsx scripts/operator.ts check",
+    "catalog:stale": "tsx scripts/operator.ts stale",
+    "catalog:coverage": "tsx scripts/coverage.ts",
+    "fixtures": "tsx scripts/operator.ts fixtures",
+    "evaluate": "tsx scripts/evaluate.ts",
+    "test:mcp": "tsx scripts/test-mcp.ts",
+    "worker": "tsx scripts/worker.ts",
+    "backup:test": "tsx scripts/backup-test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "dotenv": "17.4.2",
+    "drizzle-orm": "0.45.2",
+    "ipaddr.js": "2.5.0",
+    "next": "16.3.4",
+    "postgres": "3.4.9",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "undici": "8.10.2",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "26.5.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "prettier": "3.9.6",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2",
+    "vitest": "5.0.0"
+  }
+}

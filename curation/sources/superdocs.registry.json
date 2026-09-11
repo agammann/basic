@@ -1,0 +1,28 @@
+{
+  "server": {
+    "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+    "name": "app.superdocs/superdocs",
+    "description": "AI document editing for agents: draft, edit, export .docx/PDF. 37 MCP tools; agent self-signup.",
+    "repository": {
+      "url": "https://github.com/superdocsapp/superdocs-plugin",
+      "source": "github"
+    },
+    "version": "1.2.0",
+    "websiteUrl": "https://superdocs.app",
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://api.superdocs.app/mcp/"
+      }
+    ]
+  },
+  "_meta": {
+    "io.modelcontextprotocol.registry/official": {
+      "status": "active",
+      "statusChangedAt": "2026-07-11T09:13:56.904234Z",
+      "publishedAt": "2026-07-11T09:13:56.904234Z",
+      "updatedAt": "2026-07-11T09:13:56.904234Z",
+      "isLatest": true
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "gitlab-crunchtools",
+  "registryName": "io.github.crunchtools/gitlab",
+  "name": "GitLab by CrunchTools",
+  "publisher": "io.github.crunchtools",
+  "description": "Secure MCP server for GitLab projects, merge requests, issues, and pipelines",
+  "category": "repositories",
+  "tasks": [
+    "GitLab repositories",
+    "repository issues",
+    "merge requests"
+  ],
+  "documentation": "https://raw.githubusercontent.com/crunchtools/mcp-gitlab/main/README.md",
+  "repository": "https://github.com/crunchtools/mcp-gitlab",
+  "version": "0.4.1",
+  "collectedAt": "2026-09-09T04:36:30.031Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "pypi",
+        "name": "mcp-gitlab-crunchtools",
+        "version": "0.4.1"
+      },
+      "runtime": "Python and uv; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crunchtools%2Fgitlab/versions/0.4.1",
+        "collectedAt": "2026-09-09T04:36:30.031Z",
+        "kind": "documented",
+        "scope": "Registry version 0.4.1"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Secure MCP server for GitLab projects, merge requests, issues, and pipelines",
+      "source": {
+        "url": "https://raw.githubusercontent.com/crunchtools/mcp-gitlab/main/README.md",
+        "collectedAt": "2026-09-09T04:36:30.031Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.4.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "A GitLab token is documented. Exact least-privilege compatibility is not established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/crunchtools/mcp-gitlab/main/README.md",
+        "collectedAt": "2026-09-09T04:36:30.031Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 0.4.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/crunchtools/mcp-gitlab/main/README.md",
+        "collectedAt": "2026-09-09T04:36:30.031Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 0.4.1; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crunchtools%2Fgitlab/versions/0.4.1",
+        "collectedAt": "2026-09-09T04:36:30.031Z",
+        "kind": "documented",
+        "scope": "Registry version 0.4.1"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

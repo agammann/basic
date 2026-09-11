@@ -79,4 +79,3 @@ See [PROGRESS.md](PROGRESS.md) and [reports](reports/) for actual validation, ca
 No source-code redistribution license has been selected or granted for this project. Public repository visibility does not resolve that decision. Third-party packages and source metadata retain their respective terms.
 
 `pnpm start` serves the standalone production build on loopback port 3400. Set BASIC_HOST and PORT explicitly if you need a different local binding. Docker uses its own container listener and private production network. Routine GitHub Actions validation uses stored source snapshots and PostgreSQL fixtures, with no live publisher checks.
-

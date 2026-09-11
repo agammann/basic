@@ -1,0 +1,29 @@
+{
+  "server": {
+    "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+    "name": "ai.cerebrium/docs",
+    "description": "Search the Cerebrium docs: deployment, cerebrium.toml, hardware, endpoints. Also sends feedback.",
+    "title": "Cerebrium Docs",
+    "repository": {
+      "url": "https://github.com/CerebriumAI/cerebrium-skills",
+      "source": "github"
+    },
+    "version": "0.1.1",
+    "websiteUrl": "https://cerebrium.ai/docs",
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://cerebrium.ai/docs/mcp"
+      }
+    ]
+  },
+  "_meta": {
+    "io.modelcontextprotocol.registry/official": {
+      "status": "active",
+      "statusChangedAt": "2026-09-01T16:54:17.505427Z",
+      "publishedAt": "2026-09-01T16:54:17.505427Z",
+      "updatedAt": "2026-09-01T16:54:17.505427Z",
+      "isLatest": true
+    }
+  }
+}

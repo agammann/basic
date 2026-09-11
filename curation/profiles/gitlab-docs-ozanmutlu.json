@@ -1,0 +1,119 @@
+{
+  "id": "gitlab-docs-ozanmutlu",
+  "registryName": "io.github.ozanmutlu/gitlab-docs",
+  "name": "GitLab Docs by ozanmutlu",
+  "publisher": "io.github.ozanmutlu",
+  "description": "Search and browse 2,900+ official GitLab documentation pages via MCP",
+  "category": "documentation",
+  "tasks": [
+    "GitLab documentation",
+    "CI CD documentation",
+    "programming documentation"
+  ],
+  "documentation": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+  "repository": "https://github.com/ozanmutlu/Gitlab-Docs-MCP",
+  "version": "1.1.12",
+  "collectedAt": "2026-09-09T04:36:32.993Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "gitlab-docs-mcp",
+        "version": "1.1.12"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "none",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.ozanmutlu%2Fgitlab-docs/versions/1.1.12",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Registry version 1.1.12"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "searchGitLabDocs",
+      "description": "Search GitLab documentation.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.1.12; not a release-tag audit"
+      }
+    },
+    {
+      "name": "getDocPage",
+      "description": "Retrieve a documentation page.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.1.12; not a release-tag audit"
+      }
+    },
+    {
+      "name": "listDocSections",
+      "description": "List documentation sections.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.1.12; not a release-tag audit"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "Search and browse 2,900+ official GitLab documentation pages via MCP",
+      "source": {
+        "url": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.1.12; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Publisher shows local setup without credentials and documents Node.js 22.13+ or 24+.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 1.1.12; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/ozanmutlu/Gitlab-Docs-MCP/master/README.md",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 1.1.12; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.ozanmutlu%2Fgitlab-docs/versions/1.1.12",
+        "collectedAt": "2026-09-09T04:36:32.993Z",
+        "kind": "documented",
+        "scope": "Registry version 1.1.12"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

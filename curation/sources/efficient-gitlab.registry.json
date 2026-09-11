@@ -1,0 +1,45 @@
+{
+  "server": {
+    "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.detailobsessed/efficient-gitlab",
+    "description": "Token-efficient GitLab MCP: 167 tools via 3 meta-tools, field projection, keyset pagination",
+    "repository": {
+      "url": "https://github.com/detailobsessed/efficient-gitlab-mcp",
+      "source": "github"
+    },
+    "version": "2.33.0",
+    "packages": [
+      {
+        "registryType": "npm",
+        "identifier": "efficient-gitlab-mcp-server",
+        "version": "2.33.0",
+        "transport": {
+          "type": "stdio"
+        },
+        "environmentVariables": [
+          {
+            "description": "GitLab personal access token with API scope",
+            "isRequired": true,
+            "format": "string",
+            "isSecret": true,
+            "name": "GITLAB_PERSONAL_ACCESS_TOKEN"
+          },
+          {
+            "description": "GitLab API base URL (default: https://gitlab.com)",
+            "format": "string",
+            "name": "GITLAB_API_URL"
+          }
+        ]
+      }
+    ]
+  },
+  "_meta": {
+    "io.modelcontextprotocol.registry/official": {
+      "status": "active",
+      "statusChangedAt": "2026-05-15T16:52:26.635036Z",
+      "publishedAt": "2026-05-15T16:52:26.635036Z",
+      "updatedAt": "2026-05-15T16:52:26.635036Z",
+      "isLatest": true
+    }
+  }
+}

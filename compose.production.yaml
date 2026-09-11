@@ -1,0 +1,117 @@
+name: basic-production
+x-log: &logs
+  driver: local
+  options:
+    max-size: "10m"
+    max-file: "3"
+services:
+  db:
+    image: postgres:17.6-alpine
+    environment:
+      POSTGRES_USER: basic_admin
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:?Set DB_ADMIN_PASSWORD}
+      POSTGRES_DB: basic
+      BASIC_APP_PASSWORD: ${DB_APP_PASSWORD:?Set DB_APP_PASSWORD}
+      BASIC_OPERATOR_PASSWORD: ${DB_OPERATOR_PASSWORD:?Set DB_OPERATOR_PASSWORD}
+    volumes:
+      [
+        "pgdata:/var/lib/postgresql/data",
+        "./deploy/db-init.sh:/docker-entrypoint-initdb.d/basic.sh:ro",
+      ]
+    networks: [private]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U basic_admin -d basic"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    logging: *logs
+  migrate:
+    build: { context: ., target: worker }
+    command: ["pnpm", "db:migrate"]
+    environment:
+      DATABASE_URL: postgresql://basic_operator:${DB_OPERATOR_PASSWORD}@db:5432/basic
+    networks: [private]
+    depends_on: { db: { condition: service_healthy } }
+    profiles: [ops]
+    logging: *logs
+  curate:
+    extends: migrate
+    command: ["pnpm", "catalog:curate"]
+    profiles: [ops]
+  web:
+    build: { context: ., target: runtime }
+    environment:
+      DATABASE_URL: postgresql://basic_reader:${DB_APP_PASSWORD}@db:5432/basic
+      APP_ORIGIN: https://${BASIC_DOMAIN:?Set BASIC_DOMAIN}
+      TRUST_PROXY: "true"
+      RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-120}
+      EVIDENCE_FRESH_DAYS: ${EVIDENCE_FRESH_DAYS:-14}
+    networks: [private]
+    depends_on: { db: { condition: service_healthy } }
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    logging: *logs
+  worker:
+    build: { context: ., target: worker }
+    environment:
+      DATABASE_URL: postgresql://basic_operator:${DB_OPERATOR_PASSWORD}@db:5432/basic
+      APP_ORIGIN: https://${BASIC_DOMAIN}
+      EVIDENCE_FRESH_DAYS: ${EVIDENCE_FRESH_DAYS:-14}
+      WORKER_DEADLINE_MS: "20000"
+      LOG_DIR: /logs
+      LOG_RETENTION_DAYS: ${LOG_RETENTION_DAYS:-14}
+    networks:
+      private: {}
+      egress: { ipv4_address: 172.30.89.10 }
+    depends_on: { db: { condition: service_healthy } }
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    volumes: ["worker-logs:/logs"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    logging: *logs
+  caddy:
+    image: caddy:2.10.2-alpine
+    ports: ["80:80", "443:443"]
+    environment: { BASIC_DOMAIN: "${BASIC_DOMAIN}" }
+    volumes:
+      [
+        "./deploy/Caddyfile:/etc/caddy/Caddyfile:ro",
+        "caddy-data:/data",
+        "caddy-config:/config",
+      ]
+    networks: [private, edge]
+    depends_on: [web]
+    restart: unless-stopped
+    logging: *logs
+  backup:
+    image: postgres:17.6-alpine
+    environment:
+      PGHOST: db
+      PGUSER: basic_admin
+      PGPASSWORD: ${DB_ADMIN_PASSWORD}
+      PGDATABASE: basic
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-14}
+    volumes: ["./deploy/backup.sh:/backup.sh:ro", "backups:/backups"]
+    entrypoint: ["sh", "/backup.sh"]
+    networks: [private]
+    depends_on: { db: { condition: service_healthy } }
+    restart: unless-stopped
+    logging: *logs
+networks:
+  private: { internal: true }
+  edge: {}
+  egress:
+    ipam:
+      config: [{ subnet: 172.30.89.0/24 }]
+volumes:
+  pgdata:
+  backups:
+  caddy-data:
+  caddy-config:
+  worker-logs:

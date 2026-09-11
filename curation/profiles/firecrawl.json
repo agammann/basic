@@ -1,0 +1,115 @@
+{
+  "id": "firecrawl",
+  "registryName": "io.github.firecrawl/firecrawl-mcp-server",
+  "name": "Firecrawl",
+  "publisher": "io.github.firecrawl",
+  "description": "MCP server for Firecrawl — web search, scraping, and biomedical/arXiv paper search.",
+  "category": "research",
+  "tasks": [
+    "web research",
+    "web search",
+    "website extraction",
+    "web scraping"
+  ],
+  "documentation": "https://raw.githubusercontent.com/firecrawl/firecrawl-mcp-server/main/README.md",
+  "repository": "https://github.com/firecrawl/firecrawl-mcp-server.git",
+  "version": "3.24.0",
+  "collectedAt": "2026-09-09T04:36:27.998Z",
+  "deployments": [
+    {
+      "id": "local-0",
+      "kind": "local",
+      "transport": "stdio",
+      "package": {
+        "registry": "npm",
+        "name": "firecrawl-mcp",
+        "version": "3.24.0"
+      },
+      "runtime": "Node.js and npm; verify publisher version requirements",
+      "auth": "api-key",
+      "pricing": "unknown",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.firecrawl%2Ffirecrawl-mcp-server/versions/3.24.0",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "documented",
+        "scope": "Registry version 3.24.0"
+      }
+    },
+    {
+      "id": "hosted-keyless",
+      "kind": "remote",
+      "transport": "streamable-http",
+      "endpoint": "https://mcp.firecrawl.dev/v2/mcp",
+      "runtime": "MCP client with Streamable HTTP",
+      "auth": "none",
+      "pricing": "freemium",
+      "restrictedRead": "unknown",
+      "source": {
+        "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.24.0; not a release-tag audit"
+      }
+    }
+  ],
+  "tools": [],
+  "claims": [
+    {
+      "field": "purpose and tasks",
+      "value": "MCP server for Firecrawl — web search, scraping, and biomedical/arXiv paper search.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.24.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "authentication",
+      "value": "Local cloud API setup uses FIRECRAWL_API_KEY. A separately documented hosted keyless tier limits functionality and quotas.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.24.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "pricing",
+      "value": "Unknown: current service costs and quotas have not been established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "unknown",
+        "scope": "Publisher documentation collected with registry version 3.24.0; not a release-tag audit"
+      }
+    },
+    {
+      "field": "identity",
+      "value": "Registry namespace identifies the publisher namespace; it is not vendor endorsement.",
+      "source": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.firecrawl%2Ffirecrawl-mcp-server/versions/3.24.0",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "documented",
+        "scope": "Registry version 3.24.0"
+      }
+    },
+    {
+      "field": "hosted keyless pricing",
+      "value": "Publisher documents a rate-limited free tier for scrape, search and parse; other capabilities require a key. Current paid prices and quotas are not established.",
+      "source": {
+        "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-mcp-server/main/README.md",
+        "collectedAt": "2026-09-09T04:36:27.998Z",
+        "kind": "documented",
+        "scope": "Publisher documentation collected with registry version 3.24.0; not a release-tag audit"
+      }
+    }
+  ],
+  "unknowns": [
+    "Functional behavior has not been tested.",
+    "Least-privilege credential compatibility has not been established.",
+    "Package execution and client compatibility are not tested."
+  ],
+  "published": true
+}

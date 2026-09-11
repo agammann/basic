@@ -1,0 +1,55 @@
+{
+  "server": {
+    "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.MrRefactoring/atlassian-dc-mcp-confluence",
+    "description": "MCP server for Atlassian Confluence Data Center - access and manage content",
+    "repository": {
+      "url": "https://github.com/MrRefactoring/atlassian-dc-mcp",
+      "source": "github"
+    },
+    "version": "0.5.0",
+    "packages": [
+      {
+        "registryType": "npm",
+        "registryBaseUrl": "https://registry.npmjs.org",
+        "identifier": "confluence-datacenter-mcp",
+        "version": "0.5.0",
+        "transport": {
+          "type": "stdio"
+        },
+        "environmentVariables": [
+          {
+            "description": "Absolute path to a shared dotenv-style config file. When set, values are read from this file before direct environment variable overrides are applied.",
+            "format": "string",
+            "name": "ATLASSIAN_DC_MCP_CONFIG_FILE"
+          },
+          {
+            "description": "Confluence host domain (e.g. your-instance.atlassian.net). Required unless provided through ATLASSIAN_DC_MCP_CONFIG_FILE or CONFLUENCE_API_BASE_PATH.",
+            "format": "string",
+            "name": "CONFLUENCE_HOST"
+          },
+          {
+            "description": "Confluence API base path (alternative to CONFLUENCE_HOST). Required unless provided through ATLASSIAN_DC_MCP_CONFIG_FILE or CONFLUENCE_HOST.",
+            "format": "string",
+            "name": "CONFLUENCE_API_BASE_PATH"
+          },
+          {
+            "description": "Confluence Personal Access Token or API token. Required unless provided through ATLASSIAN_DC_MCP_CONFIG_FILE.",
+            "format": "string",
+            "isSecret": true,
+            "name": "CONFLUENCE_API_TOKEN"
+          }
+        ]
+      }
+    ]
+  },
+  "_meta": {
+    "io.modelcontextprotocol.registry/official": {
+      "status": "active",
+      "statusChangedAt": "2026-08-01T12:57:13.834079Z",
+      "publishedAt": "2026-08-01T12:57:13.834079Z",
+      "updatedAt": "2026-08-01T12:57:13.834079Z",
+      "isLatest": true
+    }
+  }
+}
