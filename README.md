@@ -2,7 +2,11 @@
 
 **Find the right tools for your agent.**
 
-Basic is a task-based search engine for MCP servers and tools. It combines official MCP Registry metadata with reviewed publisher sources, explicit unknown requirements, client setup templates and dated protocol observations. The website and three read-only MCP tools query PostgreSQL; no paid AI API or LLM key is needed.
+**Website: [Open Basic](https://basic-agent-tools.alx21.chatgpt.site)**
+
+The hosted website runs on OpenAI Sites. Access is currently private to the owner's ChatGPT account.
+
+Basic is a task-based search engine for MCP servers and tools. It combines official MCP Registry metadata with reviewed publisher sources, explicit unknown requirements, client setup templates and dated protocol observations. This repository contains the original PostgreSQL application, three read-only MCP tools and catalog operator tooling; no paid AI API or LLM key is needed. The hosted Sites edition is a separate deployment using D1 storage and reviewed catalog snapshots.
 
 This is an initial developer-productivity release, not a safety certification. Initialization and listing tools do not prove functional capability. See [How checks work](docs/CHECKS.md), [architecture](ARCHITECTURE.md), [security](SECURITY.md), and [operations](OPERATIONS.md).
 
@@ -70,11 +74,13 @@ Browser tests cover desktop and mobile search, strict constraints, profiles, con
 
 ## MCP connection
 
-Endpoint: `http://localhost:3400/mcp` (Streamable HTTP). Supported tools: `search_servers`, `get_server`, `get_setup_instructions`. See `/connect` for sourced VS Code and Claude Code JSON templates. These templates are syntax-checked; no claim is made that the third-party integrations were installed in those clients.
+Local endpoint: `http://localhost:3400/mcp` (Streamable HTTP). Supported tools: `search_servers`, `get_server`, `get_setup_instructions`. See `/connect` for sourced VS Code and Claude Code JSON templates. These templates are syntax-checked; no claim is made that the third-party integrations were installed in those clients.
 
 ## Release status and deployment
 
-See [PROGRESS.md](PROGRESS.md) and [reports](reports/) for actual validation, catalog coverage and remaining work. Production uses the included Docker Compose stack with Node, PostgreSQL, Caddy HTTPS, a scheduled worker and backups. Follow [DEPLOYMENT.md](DEPLOYMENT.md). Creating a public source repository does not create a public website or paid hosting.
+Visit [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) for the hosted website. The Sites edition uses a reviewed catalog snapshot; it does not continuously run this repository's registry synchronization or publisher checks. Its current access is limited to the owner's ChatGPT account.
+
+For this repository's PostgreSQL application, see [PROGRESS.md](PROGRESS.md) and [reports](reports/) for validation and catalog coverage. To host this application yourself, follow [DEPLOYMENT.md](DEPLOYMENT.md) for the included Docker Compose stack with Node, PostgreSQL, Caddy HTTPS, a scheduled worker and backups.
 
 No source-code redistribution license has been selected or granted for this project. Public repository visibility does not resolve that decision. Third-party packages and source metadata retain their respective terms.
 
