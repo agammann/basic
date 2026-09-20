@@ -2,10 +2,11 @@ import assert from "node:assert/strict";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 const base = process.env.TEST_BASE_URL ?? "http://localhost:3400";
+const endpoint = process.env.TEST_MCP_URL ?? base + "/mcp";
 const client = new Client({ name: "basic-integration-test", version: "1.0.0" });
 try {
   await client.connect(
-    new StreamableHTTPClientTransport(new URL(base + "/mcp")),
+    new StreamableHTTPClientTransport(new URL(endpoint)),
   );
   const tools = await client.listTools();
   assert.deepEqual(tools.tools.map((t) => t.name).sort(), [
@@ -48,7 +49,7 @@ try {
   );
   assert.equal(
     (
-      await fetch(base + "/mcp", {
+      await fetch(endpoint, {
         headers: { origin: "https://untrusted.example" },
         method: "POST",
         body: "{}",

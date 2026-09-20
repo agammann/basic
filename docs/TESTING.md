@@ -51,7 +51,9 @@ pnpm test:acceptance
 
 Browser tests cover desktop and mobile search, filtering, profiles, copying, safe rendering and keyboard navigation. The MCP test uses the official SDK to initialize Basic, list and call all three tools, compare web search results, and check rejection of an untrusted Origin. It does not execute discovered third party tools or prove installation in VS Code or Claude Code.
 
-The tests default to `http://localhost:3400`. For a separately deployed PostgreSQL instance under your control, set `TEST_BASE_URL` in the shell to its origin without a trailing slash. A deployment must contain the curated profiles the tests expect. The private Sites gate is not handled by these test scripts.
+The tests default to `http://localhost:3400`. For a deployment under your control, set `TEST_BASE_URL` in the shell to its origin without a trailing slash. A deployment must contain the curated profiles the tests expect. The public Sites edition can be checked at `https://basic-agent-tools.alx21.chatgpt.site` without authentication. These scripts do not bypass access controls if the owner later changes the audience.
+
+For the hosted MCP check, also set `TEST_MCP_URL` to `https://basic-agent-tools.alx21.chatgpt.site/api/mcp` before running `pnpm test:mcp`. The PostgreSQL edition retains `/mcp` as its default. The Sites deployment uses `/api/mcp` because its hosted `/mcp` path returned a platform 404.
 
 `pnpm test:acceptance` exercises 35 search scenarios over HTTP, checks every returned deployment against the requested requirements, traverses all catalog pages, opens all 30 profiles and the information pages, and checks invalid input and missing profiles. It prints results without replacing archived reports. It also works against a locally running Sites edition using `TEST_BASE_URL`. These are agent-run acceptance checks, not collected feedback from real users.
 

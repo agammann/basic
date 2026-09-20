@@ -2,7 +2,7 @@
 
 [Back to Basic](../README.md)
 
-Latest targeted checks: [September 19 acceptance report](2026-09-19-acceptance.md) and [browser results](2026-09-19-browser-tests.json). These cover the natural task phrasing fix and distinguish local checks, live website checks and one real publisher invocation.
+Latest targeted checks: [public launch](2026-09-19-public-launch.md), [September 19 acceptance report](2026-09-19-acceptance.md) and [browser results](2026-09-19-browser-tests.json). These distinguish anonymous hosted checks, local checks, live browser checks and one real publisher invocation.
 
 These files preserve results from particular runs of the PostgreSQL application. Check each artifact's timestamp and scope before quoting it. The original release summary was recorded on September 11, 2026. These reports do not describe current third party availability or audit the separate Sites deployment.
 
@@ -14,7 +14,7 @@ These files preserve results from particular runs of the PostgreSQL application.
 | [Verification coverage](verification-coverage.json) | Catalog counts and dated protocol observations | `pnpm catalog:coverage` |
 | [Backup restoration](backup-restore.json) | Local dump and restoration drill | `pnpm backup:test` |
 
-The release report's `publicWebsiteDeployed: false` records the state of the original PostgreSQL release. The separate private Sites website was published later; see [current project status](../PROGRESS.md). Preserve the original report rather than changing old results to describe a newer deployment.
+The release report's `publicWebsiteDeployed: false` records the state of the original PostgreSQL release. The separate Sites website was published later and subsequently opened to the public; see [current project status](../PROGRESS.md). Preserve the original report rather than changing old results to describe a newer deployment.
 
 Report commands can replace their corresponding JSON files. Preserve prior results in Git history, inspect the diff, and record the tested commit and environment alongside new evidence. Do not commit regenerated reports merely because a documentation edit ran a command.
 

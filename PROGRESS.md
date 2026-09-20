@@ -2,7 +2,9 @@
 
 ## Current status
 
-The [Sites website](https://basic-agent-tools.alx21.chatgpt.site) was published on September 13, 2026 and currently requires the owner's ChatGPT account. Its D1 application is maintained separately from this PostgreSQL repository. A public GitHub repository does not grant visitors website access.
+The [Sites website](https://basic-agent-tools.alx21.chatgpt.site) was published on September 13, 2026. The owner authorized public access on September 19, 2026; visitors can browse and use its catalog MCP endpoint without signing in. Its D1 application is maintained separately from this PostgreSQL repository.
+
+See the [public launch report](reports/2026-09-19-public-launch.md) for anonymous checks and the hosted `/api/mcp` connection path.
 
 September 19, 2026: realistic task testing reproduced an empty result for "I need a tool to search GitHub issues". Both search implementations now ignore generic request wording while retaining meaningful terms and requirement filters. See the [acceptance report](reports/2026-09-19-acceptance.md) for current test evidence and limitations.
 

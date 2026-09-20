@@ -4,7 +4,7 @@
 
 **Website: [Open Basic](https://basic-agent-tools.alx21.chatgpt.site)**
 
-The hosted website runs on OpenAI Sites. Access is currently private to the owner's ChatGPT account.
+The hosted website runs on OpenAI Sites and is public. Anyone with the link can browse without signing in. Its read-only catalog MCP endpoint is `https://basic-agent-tools.alx21.chatgpt.site/api/mcp`; see the website's [connection instructions](https://basic-agent-tools.alx21.chatgpt.site/connect).
 
 Basic is a task-based search engine for MCP servers and tools. It combines official MCP Registry metadata with reviewed publisher sources, explicit unknown requirements, client setup templates and dated protocol observations. This repository contains the original PostgreSQL application, three read-only MCP tools and catalog operator tooling; no paid AI API or LLM key is needed. The hosted Sites edition is a separate deployment using D1 storage and reviewed catalog snapshots.
 

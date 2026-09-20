@@ -8,4 +8,4 @@ Historical plan for the original PostgreSQL implementation. These milestones are
 4. Read-only Streamable HTTP MCP. Acceptance: real SDK client initializes and calls all three tools using shared catalog logic.
 5. Release preparation. Acceptance: automated tests, browser journeys, 20 development and 10 held-out search cases, latency measurement, backup restoration, production build and deployment configuration.
 
-Self hosting the PostgreSQL edition requires a host/domain and resource configuration. The separate Sites edition is deployed with private access. Source redistribution licensing remains unresolved.
+Self hosting the PostgreSQL edition requires a host/domain and resource configuration. The separate Sites edition is deployed with public access authorized by the owner on September 19, 2026. Source redistribution licensing remains unresolved.

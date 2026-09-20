@@ -108,4 +108,4 @@ After pulling a code update, stop the app, run `pnpm install --frozen-lockfile` 
 | Port 3400 is already in use | Stop your earlier Basic server before starting another one. |
 | `pnpm start` reports missing build files | Run `pnpm build` first. Stop `pnpm dev` before starting production on the same port. |
 | `applied-migration-changed` | Restore the original applied migration and create a new migration for the change. Do not delete migration history. |
-| Hosted website returns 401 | The Sites edition is private. Use the owner's authorized ChatGPT session; local database commands do not change hosted access. |
+| Hosted website returns 401 | The Sites edition is intended to be public. Confirm the URL above and report an unexpected access prompt; local database commands do not change hosted access. |
