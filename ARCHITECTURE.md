@@ -1,5 +1,7 @@
 # Architecture
 
+This document describes the PostgreSQL source in this repository. The separately maintained [hosted Sites edition](https://basic-agent-tools.alx21.chatgpt.site) uses D1 and a reviewed catalog snapshot. See the [README](README.md) for the relationship between the two editions.
+
 One TypeScript product has two operating roles: Next.js serves pages/HTTP MCP reads, and a scheduled operator process imports metadata and runs approved checks. Both use reusable modules in `src/lib`; PostgreSQL persists all catalog data. There is no AI provider, vector database, message broker, account service, WebMCP integration or general crawler.
 
 ## Persistence and authority

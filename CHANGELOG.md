@@ -1,5 +1,9 @@
 # Changelog
 
+## September 19, 2026
+
+Natural task wording such as "I need a tool to search GitHub issues" now finds matching catalog entries. Both the PostgreSQL source and separate hosted Sites edition received the correction. Added regression tests and an HTTP acceptance command covering search, filters, pagination and profile routes. Added setup, troubleshooting and testing guides, clarified the two deployment editions, and recorded the [acceptance results](reports/2026-09-19-acceptance.md).
+
 ## 0.1.0
 
 - PostgreSQL-backed task search, deployment constraints and evidence-aware profiles.

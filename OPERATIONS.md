@@ -1,5 +1,7 @@
 # Operations
 
+These commands maintain the PostgreSQL application in this repository. They do not update the separately published Sites snapshot. Start with [Local setup](docs/SETUP.md); use [Testing](docs/TESTING.md) to verify changes and understand which commands replace report files.
+
 Run commands from the repository root with Node 24 and pnpm 11.19.0. The operator needs the writable operator database connection; the public app must use its separate reader connection in production. Local defaults are only for development.
 
 ## Routine maintenance

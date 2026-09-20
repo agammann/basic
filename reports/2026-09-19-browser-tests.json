@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-09-20T00:57:28.019Z",
+  "status": "passed",
+  "tests": 8,
+  "passed": 8,
+  "results": [
+    {
+      "title": "desktop / journeys.spec.ts / search to sourced profile and copyable setup",
+      "status": "passed",
+      "durationMs": 2141
+    },
+    {
+      "title": "desktop / journeys.spec.ts / hard constraints and unknown controls remain shareable",
+      "status": "passed",
+      "durationMs": 669
+    },
+    {
+      "title": "desktop / journeys.spec.ts / untrusted search text remains inert and empty results are honest",
+      "status": "passed",
+      "durationMs": 831
+    },
+    {
+      "title": "desktop / journeys.spec.ts / desktop and mobile render evidence and keyboard navigation",
+      "status": "passed",
+      "durationMs": 855
+    },
+    {
+      "title": "mobile / journeys.spec.ts / search to sourced profile and copyable setup",
+      "status": "passed",
+      "durationMs": 1133
+    },
+    {
+      "title": "mobile / journeys.spec.ts / hard constraints and unknown controls remain shareable",
+      "status": "passed",
+      "durationMs": 642
+    },
+    {
+      "title": "mobile / journeys.spec.ts / untrusted search text remains inert and empty results are honest",
+      "status": "passed",
+      "durationMs": 591
+    },
+    {
+      "title": "mobile / journeys.spec.ts / desktop and mobile render evidence and keyboard navigation",
+      "status": "passed",
+      "durationMs": 1051
+    }
+  ]
+}

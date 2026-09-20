@@ -10,9 +10,24 @@ Basic is a task-based search engine for MCP servers and tools. It combines offic
 
 This is an initial developer-productivity release, not a safety certification. Initialization and listing tools do not prove functional capability. See [How checks work](docs/CHECKS.md), [architecture](ARCHITECTURE.md), [security](SECURITY.md), and [operations](OPERATIONS.md).
 
-## Fresh checkout
+## Start here
+
+| Your goal | Guide |
+| --- | --- |
+| Use the hosted website | [Open Basic](https://basic-agent-tools.alx21.chatgpt.site), subject to its access settings |
+| Run this repository | [Local setup and troubleshooting](docs/SETUP.md) |
+| Verify a change | [Testing guide](docs/TESTING.md) |
+| Maintain the catalog | [Operations](OPERATIONS.md) |
+| Host the PostgreSQL application | [Deployment](DEPLOYMENT.md) |
+| Understand recorded results | [Report index](reports/README.md) and [current status](PROGRESS.md) |
+
+The redesigned Sites website and its D1 deployment are maintained in a separate Sites project. Cloning this repository gives you the original PostgreSQL application and operator tools. Pushing to this GitHub repository does not redeploy the hosted website.
+
+## Quick start for developers
 
 Requirements: **Node.js 24.x** (tested 24.19.0), **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. Local PostgreSQL is pinned to 17.6. Run from the repository root. Port 3400 is the website and 55432 is local PostgreSQL. Do not reuse another project's database.
+
+Start Docker with Linux containers enabled. Run each command separately and resolve errors before continuing. Use a fresh terminal without another project's database or application-origin settings.
 
 ```sh
 git clone https://github.com/agammann/basic.git
@@ -28,6 +43,8 @@ pnpm dev
 After starting the local server, open `http://localhost:3400` in your browser. This address is only available on your own computer while the server is running. The local database defaults in `.env.example` are used when DATABASE_URL is unset; ensure an unrelated DATABASE_URL is not inherited from your shell. Copy `.env.example` to `.env` to customize it (`Copy-Item .env.example .env` in PowerShell, `cp .env.example .env` on Linux/macOS). Never commit `.env`.
 
 The curated bootstrap loads **30 genuine, source-dated profiles**, not synthetic fixtures. It does not run network checks or execute discovered packages. A fresh database correctly shows “Not tested” until checks are run; archived test reports are not imported as new observations.
+
+Open `http://localhost:3400/ready` and expect `status: "ready"` with 30 profiles after the initial bootstrap. Search for `I need a tool to search GitHub issues` and open the GitHub result. Stop the application with Ctrl+C; `docker compose stop db` stops PostgreSQL while preserving its data. See [Local setup](docs/SETUP.md) for restart and troubleshooting instructions.
 
 ## Operator commands
 
@@ -49,7 +66,7 @@ Edit `curation/profiles/*.json`, preserving source dates and evidence scope, the
 ## Tests and production build
 
 ```sh
-docker exec basic-db-1 createdb -U basic basic_test
+docker compose exec -T db createdb -U basic basic_test
 pnpm test
 pnpm typecheck
 pnpm build
@@ -57,6 +74,8 @@ pnpm start
 ```
 
 If `basic_test` already exists, omit `createdb`. Tests deliberately truncate that disposable database and refuse a different database name. `TEST_DATABASE_URL` can override the connection for CI but must still name `basic_test`.
+
+Stop `pnpm dev` before the production build and leave `pnpm start` running in its own terminal. The [testing guide](docs/TESTING.md) separates application and test databases, browser prerequisites, report generation and live operator actions.
 
 With the application running in another terminal:
 

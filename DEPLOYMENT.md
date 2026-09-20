@@ -1,6 +1,8 @@
 # Deployment
 
-The chosen deployment is a single Linux Docker host running the checked-in production Compose stack. It serves the website and Streamable HTTP MCP from Next.js/Node, stores PostgreSQL on a persistent volume, schedules a separate worker, terminates HTTPS with Caddy, and writes daily backup dumps. No host, paid service, domain or public website has been provisioned by the local build.
+This guide covers self hosting the PostgreSQL application in this repository on a Linux Docker host. It serves the website and Streamable HTTP MCP from Next.js/Node, stores PostgreSQL on a persistent volume, schedules a separate worker, terminates HTTPS with Caddy, and writes daily backup dumps. That Linux deployment has not been provisioned.
+
+The separate [Basic website on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) is already deployed with D1 storage and private owner access. The commands below do not update the Sites website. For local development, use [Local setup](docs/SETUP.md).
 
 ## Resource assumptions
 

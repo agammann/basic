@@ -20,7 +20,7 @@ const synonyms: Record<string, string> = {
   readonly: "read",
 };
 const stop = new Set(
-  "find a an the for my agent agents me i need want to with using without no api key keys free paid remote local read only restricted credentials access search information about public please programming".split(
+  "find a an the for my agent agents me i need want to with using without no api key keys free paid remote local read only restricted credentials access search information about public please programming tool tools mcp server servers can you help looking am that lets allow allows do does it is would like".split(
     " ",
   ),
 );

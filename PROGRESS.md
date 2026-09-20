@@ -1,5 +1,15 @@
 # Progress
 
+## Current status
+
+The [Sites website](https://basic-agent-tools.alx21.chatgpt.site) was published on September 13, 2026 and currently requires the owner's ChatGPT account. Its D1 application is maintained separately from this PostgreSQL repository. A public GitHub repository does not grant visitors website access.
+
+September 19, 2026: realistic task testing reproduced an empty result for "I need a tool to search GitHub issues". Both search implementations now ignore generic request wording while retaining meaningful terms and requirement filters. See the [acceptance report](reports/2026-09-19-acceptance.md) for current test evidence and limitations.
+
+## Original PostgreSQL release validation
+
+The results below describe the recorded September 11, 2026 release, not a fresh audit of every subsequent change. See the [report index](reports/README.md) and [testing guide](docs/TESTING.md).
+
 All five implementation milestones and local release verification are complete. Public source publication was explicitly authorized. No paid host or domain has been provisioned, and no source license has been granted.
 
 1. PostgreSQL migrations and a working search, profile and setup journey are implemented.
@@ -10,4 +20,4 @@ All five implementation milestones and local release verification are complete. 
 
 Codex Security reviewed the original 157 source inventory files and reported three medium findings. Fixes exclude production secrets from build inputs, contain upstream response conversion errors, and keep full schema history out of public response materialization. Regression cases cover these code paths. See SECURITY.md for deployment assumptions and limits.
 
-Remaining deployment actions are choosing an authorized Linux host and domain, supplying runtime credentials, validating host egress and HTTPS, setting up independent encrypted backups and recording rollback ownership. DEPLOYMENT.md contains the exact procedure. Public repository visibility does not create a public website.
+Remaining actions for a separate Linux deployment are choosing a host and domain, supplying runtime credentials, validating host egress and HTTPS, setting up independent encrypted backups and recording rollback ownership. [Deployment](DEPLOYMENT.md) contains that procedure; it is separate from the existing Sites publication.

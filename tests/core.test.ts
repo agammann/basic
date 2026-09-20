@@ -15,6 +15,21 @@ const p = profileSchema.parse(
   JSON.parse(fs.readFileSync("curation/profiles/microsoft-learn.json", "utf8")),
 );
 const d = p.deployments[0];
+describe("ordinary task phrasing", () => {
+  it.each([
+    "I need a tool to search GitHub issues",
+    "Can you help me find an MCP server for GitHub issues?",
+    "I am looking for tools that search GitHub issues",
+  ])("keeps the meaningful terms in %s", (query) => {
+    expect(parseTask(query, { includeUnknown: false }).terms).toEqual(["github", "issues"]);
+  });
+  it("preserves explicit constraints and unsupported task terms", () => {
+    const parsed = parseTask("Can you find a free remote tool for documentation without an API key", { includeUnknown: false });
+    expect(parsed.terms).toEqual(["documentation"]);
+    expect(parsed.filters).toMatchObject({ pricing: "free", setup: "remote", auth: "none" });
+    expect(parseTask("I need a tool for quantum gardening", { includeUnknown: false }).terms).toEqual(["quantum", "gardening"]);
+  });
+});
 const run = (
   outcome: Verification["outcome"],
   date: string,

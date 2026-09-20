@@ -24,6 +24,7 @@
     "fixtures": "tsx scripts/operator.ts fixtures",
     "evaluate": "tsx scripts/evaluate.ts",
     "test:mcp": "tsx scripts/test-mcp.ts",
+    "test:acceptance": "node scripts/test-acceptance.mjs",
     "worker": "tsx scripts/worker.ts",
     "backup:test": "tsx scripts/backup-test.ts"
   },
