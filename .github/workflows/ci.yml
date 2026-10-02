@@ -30,6 +30,7 @@ jobs:
           node-version: "24.19.0"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm audit --audit-level=low
       - run: docker exec ${{ job.services.postgres.id }} createdb -U basic basic_test
       - run: pnpm db:migrate && pnpm catalog:curate
       - run: pnpm typecheck && pnpm test && pnpm evaluate && pnpm build
@@ -43,3 +44,31 @@ jobs:
           done
           pnpm test:browser
           pnpm test:mcp
+      - name: Search and profile acceptance
+        run: |
+          # Browser prefetches and API checks share one rate bucket. Start this
+          # independent batch in a fresh minute without changing app limits.
+          sleep $((61 - $(date +%-S)))
+          pnpm test:acceptance
+      - name: Disposable backup restoration
+        env:
+          BASIC_DB_CONTAINER: ${{ job.services.postgres.id }}
+        run: pnpm backup:test
+      - name: Container build and runtime checks
+        run: |
+          docker build --target runtime -t basic-runtime-review .
+          docker build --target worker -t basic-worker-review .
+          docker run --rm --network host -e DATABASE_URL basic-worker-review pnpm catalog:curate
+          docker run --rm --network host -e DATABASE_URL basic-worker-review pnpm catalog:stale
+          docker run -d --name basic-runtime-review --network host --read-only --tmpfs /tmp --cap-drop ALL --security-opt no-new-privileges:true -e DATABASE_URL -e APP_ORIGIN=http://localhost:3401 -e PORT=3401 basic-runtime-review
+          trap 'docker logs basic-runtime-review; docker rm -f basic-runtime-review' EXIT
+          ready=false
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:3401/ready; then ready=true; break; fi
+            sleep 1
+          done
+          test "$ready" = true
+          # The standalone process and container use the same database bucket.
+          sleep $((61 - $(date +%-S)))
+          TEST_BASE_URL=http://localhost:3401 pnpm test:mcp
+          TEST_BASE_URL=http://localhost:3401 pnpm test:acceptance
