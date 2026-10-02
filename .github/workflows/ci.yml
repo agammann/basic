@@ -68,5 +68,7 @@ jobs:
             sleep 1
           done
           test "$ready" = true
+          # The standalone process and container use the same database bucket.
+          sleep $((61 - $(date +%-S)))
           TEST_BASE_URL=http://localhost:3401 pnpm test:mcp
           TEST_BASE_URL=http://localhost:3401 pnpm test:acceptance
