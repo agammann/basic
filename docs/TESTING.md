@@ -65,7 +65,7 @@ With the default Basic Compose database running and populated:
 pnpm backup:test
 ```
 
-This script specifically uses the `basic-db-1` container and the `basic` database, regardless of `DATABASE_URL`. It creates a temporary database named `basic_restore_test_<timestamp>`, restores a dump, compares counts and exercises search, then removes that temporary database. It writes `reports/backup-restore.json`. It does not restore over the source database and does not test recovery from an independent backup location.
+This script uses the `basic-db-1` container by default and the `basic` database, regardless of `DATABASE_URL`. Set `BASIC_DB_CONTAINER` in the shell to select another Basic PostgreSQL container. For example, a project started with `docker compose -p basic-review up -d --wait db` uses `basic-review-db-1`. It creates a temporary database named `basic_restore_test_<timestamp>` and a matching temporary dump, restores the dump, compares counts and exercises search, then removes both temporary artifacts. It writes `reports/backup-restore.json`. It does not restore over the source database and does not test recovery from an independent backup location.
 
 ## Catalog and report checks
 
@@ -82,6 +82,6 @@ Live synchronization and checks are operator actions, not prerequisites for the 
 
 ## CI and evidence
 
-[GitHub Actions](https://github.com/agammann/basic/actions/workflows/ci.yml) runs the checked in [validation workflow](../.github/workflows/ci.yml): dependency installation, fresh PostgreSQL bootstrap, typecheck, unit and integration tests, evaluation, production build, browser journeys and the SDK test. It uses stored source snapshots and does not run live publisher checks. The local backup drill and deployment host checks are separate.
+[GitHub Actions](https://github.com/agammann/basic/actions/workflows/ci.yml) runs the checked in [validation workflow](../.github/workflows/ci.yml): dependency installation and audit, fresh PostgreSQL bootstrap, typecheck, unit and integration tests, evaluation, production build, browser journeys, the SDK test, search acceptance and disposable backup restoration. It uses stored source snapshots and does not run live publisher checks. Deployment host checks are separate.
 
 See the [report index](../reports/README.md) for each artifact's scope and timestamp. A historical passing report is evidence for that recorded run, not proof of the current commit or live deployment. The [evaluation protocol](../evaluation/README.md) explains the fixed cases and scoring limits.

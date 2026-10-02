@@ -30,6 +30,7 @@ jobs:
           node-version: "24.19.0"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm audit --audit-level=low
       - run: docker exec ${{ job.services.postgres.id }} createdb -U basic basic_test
       - run: pnpm db:migrate && pnpm catalog:curate
       - run: pnpm typecheck && pnpm test && pnpm evaluate && pnpm build
@@ -43,3 +44,13 @@ jobs:
           done
           pnpm test:browser
           pnpm test:mcp
+      - name: Search and profile acceptance
+        run: |
+          # Browser prefetches and API checks share one rate bucket. Start this
+          # independent batch in a fresh minute without changing app limits.
+          sleep $((61 - $(date +%-S)))
+          pnpm test:acceptance
+      - name: Disposable backup restoration
+        env:
+          BASIC_DB_CONTAINER: ${{ job.services.postgres.id }}
+        run: pnpm backup:test

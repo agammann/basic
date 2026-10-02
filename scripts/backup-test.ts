@@ -1,10 +1,12 @@
 import { execFileSync } from "node:child_process";
 import fs from "node:fs/promises";
 const target = "basic_restore_test_" + Date.now();
+const container = process.env.BASIC_DB_CONTAINER ?? "basic-db-1";
+const dumpPath = "/tmp/" + target + ".dump";
 if (!/^basic_restore_test_\d+$/.test(target))
   throw Error("unsafe-restore-target");
 const exec = (args: string[]) =>
-  execFileSync("docker", ["exec", "basic-db-1", ...args], {
+  execFileSync("docker", ["exec", container, ...args], {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"],
   });
@@ -30,7 +32,7 @@ try {
     "--format=custom",
     "--no-owner",
     "--no-acl",
-    "--file=/tmp/basic-restore-test.dump",
+    "--file=" + dumpPath,
   ]);
   const expected = counts("basic");
   exec(["createdb", "-U", "basic", target]);
@@ -44,7 +46,7 @@ try {
     "--exit-on-error",
     "-d",
     target,
-    "/tmp/basic-restore-test.dump",
+    dumpPath,
   ]);
   const actual = counts(target);
   if (actual !== expected) throw Error("restored-row-count-mismatch");
@@ -78,5 +80,5 @@ try {
   console.log(JSON.stringify(report, null, 2));
 } finally {
   if (created) exec(["dropdb", "-U", "basic", target]);
-  exec(["rm", "-f", "/tmp/basic-restore-test.dump"]);
+  exec(["rm", "-f", dumpPath]);
 }

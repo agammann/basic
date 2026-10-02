@@ -87,7 +87,7 @@ pnpm evaluate
 pnpm backup:test
 ```
 
-Browser tests cover desktop and mobile search, strict constraints, profiles, configuration copying, safe rendering and keyboard navigation. The MCP test uses the official SDK over real HTTP and calls all three tools. Routine tests use offline upstream fixtures; `catalog:check` and `catalog:sync` are the explicit live operations. `backup:test` uses the local `basic-db-1` container and creates/removes a disposable restoration database.
+Browser tests cover desktop and mobile search, strict constraints, profiles, configuration copying, safe rendering and keyboard navigation. The MCP test uses the official SDK over real HTTP and calls all three tools. Routine tests use offline upstream fixtures; `catalog:check` and `catalog:sync` are the explicit live operations. `backup:test` uses the local `basic-db-1` container and creates/removes a disposable restoration database. Set `BASIC_DB_CONTAINER` to use a different Basic PostgreSQL container, such as one created by a named Compose project.
 
 `fixtures` requires `ENABLE_FIXTURES=true` and `DATABASE_URL` naming `basic_test`. It loads a deliberately synthetic, unpublished record. Production refuses it.
 
@@ -97,7 +97,7 @@ Local endpoint: `http://localhost:3400/mcp` (Streamable HTTP). Supported tools: 
 
 ## Release status and deployment
 
-Visit [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) for the hosted website. The Sites edition uses a reviewed catalog snapshot; it does not continuously run this repository's registry synchronization or publisher checks. Its current access is limited to the owner's ChatGPT account.
+Visit [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) for the public hosted website. Browsing and its read-only catalog endpoint require no sign-in. The Sites edition uses a reviewed catalog snapshot; it does not continuously run this repository's registry synchronization or publisher checks.
 
 For this repository's PostgreSQL application, see [PROGRESS.md](PROGRESS.md) and [reports](reports/) for validation and catalog coverage. To host this application yourself, follow [DEPLOYMENT.md](DEPLOYMENT.md) for the included Docker Compose stack with Node, PostgreSQL, Caddy HTTPS, a scheduled worker and backups.
 
