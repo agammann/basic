@@ -82,6 +82,6 @@ Live synchronization and checks are operator actions, not prerequisites for the 
 
 ## CI and evidence
 
-[GitHub Actions](https://github.com/agammann/basic/actions/workflows/ci.yml) runs the checked in [validation workflow](../.github/workflows/ci.yml): dependency installation and audit, fresh PostgreSQL bootstrap, typecheck, unit and integration tests, evaluation, production build, browser journeys, the SDK test, search acceptance and disposable backup restoration. It uses stored source snapshots and does not run live publisher checks. Deployment host checks are separate.
+[GitHub Actions](https://github.com/agammann/basic/actions/workflows/ci.yml) runs the checked in [validation workflow](../.github/workflows/ci.yml): dependency installation and audit, fresh PostgreSQL bootstrap, typecheck, unit and integration tests, evaluation, production build, browser journeys, the SDK test, search acceptance and disposable backup restoration. It also builds both Docker image targets, runs offline operator commands in the worker image, and checks MCP and search through the runtime container with its production filesystem restrictions. It uses stored source snapshots and does not run live publisher checks. Deployment host checks are separate.
 
 See the [report index](../reports/README.md) for each artifact's scope and timestamp. A historical passing report is evidence for that recorded run, not proof of the current commit or live deployment. The [evaluation protocol](../evaluation/README.md) explains the fixed cases and scoring limits.

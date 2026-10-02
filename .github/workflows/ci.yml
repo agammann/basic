@@ -54,3 +54,19 @@ jobs:
         env:
           BASIC_DB_CONTAINER: ${{ job.services.postgres.id }}
         run: pnpm backup:test
+      - name: Container build and runtime checks
+        run: |
+          docker build --target runtime -t basic-runtime-review .
+          docker build --target worker -t basic-worker-review .
+          docker run --rm --network host -e DATABASE_URL basic-worker-review pnpm catalog:curate
+          docker run --rm --network host -e DATABASE_URL basic-worker-review pnpm catalog:stale
+          docker run -d --name basic-runtime-review --network host --read-only --tmpfs /tmp --cap-drop ALL --security-opt no-new-privileges:true -e DATABASE_URL -e APP_ORIGIN=http://localhost:3401 -e PORT=3401 basic-runtime-review
+          trap 'docker logs basic-runtime-review; docker rm -f basic-runtime-review' EXIT
+          ready=false
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:3401/ready; then ready=true; break; fi
+            sleep 1
+          done
+          test "$ready" = true
+          TEST_BASE_URL=http://localhost:3401 pnpm test:mcp
+          TEST_BASE_URL=http://localhost:3401 pnpm test:acceptance
