@@ -53,9 +53,15 @@ Browser tests cover desktop and mobile search, filtering, profiles, copying, saf
 
 The tests default to `http://localhost:3400`. For a deployment under your control, set `TEST_BASE_URL` in the shell to its origin without a trailing slash. A deployment must contain the curated profiles the tests expect. The public Sites edition can be checked at `https://basic-agent-tools.alx21.chatgpt.site` without authentication. These scripts do not bypass access controls if the owner later changes the audience.
 
-For the hosted MCP check, also set `TEST_MCP_URL` to `https://basic-agent-tools.alx21.chatgpt.site/api/mcp` before running `pnpm test:mcp`. The PostgreSQL edition retains `/mcp` as its default. The Sites deployment uses `/api/mcp` because its hosted `/mcp` path returned a platform 404.
+For the anonymous hosted MCP check, also set `TEST_MCP_URL` to `https://basic-agent-tools.alx21.chatgpt.site/api/mcp` before running `pnpm test:mcp`. The PostgreSQL edition retains `/mcp` as its default. This SDK check does not exercise the hosted Basic plugin's authenticated `/mcp` connection.
 
 `pnpm test:acceptance` exercises 35 search scenarios over HTTP, checks every returned deployment against the requested requirements, traverses all catalog pages, opens all 30 profiles and the information pages, and checks invalid input and missing profiles. It prints results without replacing archived reports. It also works against a locally running Sites edition using `TEST_BASE_URL`. These are agent-run acceptance checks, not collected feedback from real users.
+
+### October 2, 2026 connected Codex check
+
+Hosted version 4 passed five actual calls through the installed Basic plugin after it was selected in the current Codex chat. The calls covered all three tools: `search_servers`, `get_server` and `get_setup_instructions`. Constrained search and profile lookup agreed on the same deployment; the returned VS Code configuration parsed and matched the profile's recorded endpoint. A strict capability filter excluded unknown capabilities, while explicitly enabling `includeUnknown` included them.
+
+The inspected profile retained its September 9 source date and stale-evidence status; setup remained marked as syntax-only validation. This verified Basic's connected catalog workflow. It did not execute or install a listed third-party server, test the suggested client integration, or refresh the catalog's publisher observations.
 
 ## Local recovery drill
 
