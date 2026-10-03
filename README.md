@@ -4,7 +4,7 @@
 
 **Website: [Open Basic](https://basic-agent-tools.alx21.chatgpt.site)**
 
-The hosted website runs on OpenAI Sites and is public. Anyone with the link can browse without signing in. Its read-only catalog MCP endpoint is `https://basic-agent-tools.alx21.chatgpt.site/api/mcp`; see the website's [connection instructions](https://basic-agent-tools.alx21.chatgpt.site/connect).
+The hosted website runs on OpenAI Sites and is public. Anyone with the link can browse without signing in. Its anonymous read-only catalog MCP endpoint is `https://basic-agent-tools.alx21.chatgpt.site/api/mcp`; see the website's [connection instructions](https://basic-agent-tools.alx21.chatgpt.site/connect).
 
 Basic is a task-based search engine for MCP servers and tools. It combines official MCP Registry metadata with reviewed publisher sources, explicit unknown requirements, client setup templates and dated protocol observations. This repository contains the original PostgreSQL application, three read-only MCP tools and catalog operator tooling; no paid AI API or LLM key is needed. The hosted Sites edition is a separate deployment using D1 storage and reviewed catalog snapshots.
 
@@ -95,9 +95,11 @@ Browser tests cover desktop and mobile search, strict constraints, profiles, con
 
 Local endpoint: `http://localhost:3400/mcp` (Streamable HTTP). Supported tools: `search_servers`, `get_server`, `get_setup_instructions`. See `/connect` for sourced VS Code and Claude Code JSON templates. These templates are syntax-checked; no claim is made that the third-party integrations were installed in those clients.
 
+For the hosted Codex connection, `/mcp` is the authenticated endpoint used by the Basic plugin. If Basic is installed and connected, select **Basic** in the current chat to make its tools available. The anonymous `/api/mcp` endpoint remains available for direct SDK clients. See the [October 2 connected-tool check](docs/TESTING.md#october-2-2026-connected-codex-check).
+
 ## Release status and deployment
 
-Visit [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) for the public hosted website. Browsing and its read-only catalog endpoint require no sign-in. The Sites edition uses a reviewed catalog snapshot; it does not continuously run this repository's registry synchronization or publisher checks.
+Visit [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) for the public hosted website. Browsing and `/api/mcp` require no sign-in. The Sites edition uses a reviewed catalog snapshot; it does not continuously run this repository's registry synchronization or publisher checks.
 
 For this repository's PostgreSQL application, see [PROGRESS.md](PROGRESS.md) and [reports](reports/) for validation and catalog coverage. To host this application yourself, follow [DEPLOYMENT.md](DEPLOYMENT.md) for the included Docker Compose stack with Node, PostgreSQL, Caddy HTTPS, a scheduled worker and backups.
 
