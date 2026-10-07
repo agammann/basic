@@ -10,3 +10,4 @@ backups/
 work/
 curation/sources/*.txt
 deploy/production.env
+release-artifacts/
