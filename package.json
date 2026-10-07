@@ -1,6 +1,7 @@
 {
   "name": "basic",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "type": "module",
   "engines": {
@@ -26,10 +27,11 @@
     "test:mcp": "tsx scripts/test-mcp.ts",
     "test:acceptance": "node scripts/test-acceptance.mjs",
     "worker": "tsx scripts/worker.ts",
-    "backup:test": "tsx scripts/backup-test.ts"
+    "backup:test": "tsx scripts/backup-test.ts",
+    "package:release": "node scripts/package-release.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.30.0",
+    "@modelcontextprotocol/sdk": "1.31.0",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "dotenv": "17.4.2",

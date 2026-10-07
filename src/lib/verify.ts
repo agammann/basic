@@ -52,7 +52,7 @@ export async function runApprovedChecks() {
         config.WORKER_DEADLINE_MS,
       );
       const client = new Client(
-        { name: "basic-protocol-check", version: "0.1.0" },
+        { name: "basic-protocol-check", version: "1.0.0" },
         { capabilities: {} },
       );
       let initialized = false,

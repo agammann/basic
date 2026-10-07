@@ -103,6 +103,8 @@ Visit [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) for 
 
 For this repository's PostgreSQL application, see [PROGRESS.md](PROGRESS.md) and [reports](reports/) for validation and catalog coverage. To host this application yourself, follow [DEPLOYMENT.md](DEPLOYMENT.md) for the included Docker Compose stack with Node, PostgreSQL, Caddy HTTPS, a scheduled worker and backups.
 
-No source-code redistribution license has been selected or granted for this project. Public repository visibility does not resolve that decision. Third-party packages and source metadata retain their respective terms.
+Basic's original source and documentation are available under the [MIT license](LICENSE). Third-party packages, catalog metadata and referenced publisher material retain their respective terms. Basic does not grant rights to third-party services or their content.
+
+The [v1 delivery guide](docs/v1.md) covers the source ZIP, checksum verification, local installation, the supported search/MCP workflow and recovery limits. The separate hosted Sites edition follows its own deployment process.
 
 `pnpm start` serves the standalone production build on loopback port 3400. Set BASIC_HOST and PORT explicitly if you need a different local binding. Docker uses its own container listener and private production network. Routine GitHub Actions validation uses stored source snapshots and PostgreSQL fixtures, with no live publisher checks.

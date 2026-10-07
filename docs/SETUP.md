@@ -2,7 +2,7 @@
 
 [Back to Basic](../README.md)
 
-This guide runs the PostgreSQL application in this repository on your computer. To use the separately hosted website, open [Basic on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) with the owner's ChatGPT account. Local commands do not update that website.
+This guide runs the PostgreSQL application in this repository on your computer. The separately hosted [Basic website on OpenAI Sites](https://basic-agent-tools.alx21.chatgpt.site) supports anonymous browsing and `/api/mcp`; its installed plugin uses the authenticated `/mcp` endpoint. Local commands do not update that website.
 
 ## Prerequisites
 

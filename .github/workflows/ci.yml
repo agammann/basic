@@ -1,5 +1,9 @@
 name: Basic validation
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -72,3 +76,50 @@ jobs:
           sleep $((61 - $(date +%-S)))
           TEST_BASE_URL=http://localhost:3401 pnpm test:mcp
           TEST_BASE_URL=http://localhost:3401 pnpm test:acceptance
+
+  source:
+    name: Package committed source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24.19.0"
+      - run: node scripts/package-release.mjs
+      - name: Check source archive and checksum
+        run: |
+          cd release-artifacts
+          sha256sum -c basic_*.zip.sha256
+          unzip -t basic_*.zip
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: basic-source
+          path: |
+            release-artifacts/basic_*_source.zip
+            release-artifacts/basic_*_source.zip.sha256
+          if-no-files-found: error
+          overwrite: true
+
+  publish:
+    name: Publish verified source release
+    needs: [validate, source]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: basic-release
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: basic-source
+          path: release-artifacts
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const { pathToFileURL } = require('node:url');
+            const { resolve } = require('node:path');
+            const { default: publish } = await import(pathToFileURL(resolve('scripts/release.mjs')).href);
+            await publish({ github, context, core });

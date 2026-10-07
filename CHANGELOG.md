@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0
+
+- Deliver the PostgreSQL catalog/search application as a versioned source ZIP with a SHA256 checksum, lockfile, migrations, setup guides and MIT license.
+- Preserve the bounded catalog workflow: 30 source-dated profiles, task search and constraints, evidence-aware profiles, and the three read-only Streamable HTTP MCP tools.
+- Update the MCP SDK to 1.31.0 and pin patched `proxy-addr` and `source-map-js` transitive versions.
+- Publish from an exact main commit only after the complete application validation and source packaging jobs pass. Release retries verify draft ownership, tag identity and asset digests before publication.
+
+The source distribution supports local PostgreSQL installation and includes Linux deployment instructions. Public HTTPS deployment, host firewall enforcement, off-host backups and production capacity remain deployment-specific validation work. The hosted Sites edition is maintained separately.
+
 ## September 19, 2026
 
 Natural task wording such as "I need a tool to search GitHub issues" now finds matching catalog entries. Both the PostgreSQL source and separate hosted Sites edition received the correction. Added regression tests and an HTTP acceptance command covering search, filters, pagination and profile routes. Added setup, troubleshooting and testing guides, clarified the two deployment editions, and recorded the [acceptance results](reports/2026-09-19-acceptance.md).
