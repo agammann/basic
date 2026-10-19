@@ -1,4 +1,4 @@
-FROM node:24.19.0-bookworm-slim AS build
+FROM node:26.12.0-bookworm-slim AS build
 ENV NEXT_TELEMETRY_DISABLED=1
 WORKDIR /app
 RUN npm install -g pnpm@11.19.0
@@ -14,7 +14,7 @@ COPY curation/sources/*.registry.json ./curation/sources/
 COPY curation/approved-endpoints.json ./curation/approved-endpoints.json
 RUN pnpm build
 
-FROM node:24.19.0-bookworm-slim AS runtime
+FROM node:26.12.0-bookworm-slim AS runtime
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3400 HOSTNAME=0.0.0.0
 WORKDIR /app
 COPY --from=build --chown=node:node /app/.next/standalone ./
