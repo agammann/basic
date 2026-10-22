@@ -31,7 +31,7 @@
     "package:release": "node scripts/package-release.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.31.0",
+    "@modelcontextprotocol/sdk": "1.32.0",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "dotenv": "17.4.2",
