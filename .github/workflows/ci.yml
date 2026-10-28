@@ -54,6 +54,12 @@ jobs:
           # independent batch in a fresh minute without changing app limits.
           sleep $((61 - $(date +%-S)))
           pnpm test:acceptance
+      - name: Recover HTTP search after a real PostgreSQL outage
+        env:
+          BASIC_DB_CONTAINER: ${{ job.services.postgres.id }}
+        run: |
+          sleep $((61 - $(date +%-S)))
+          node scripts/test-db-recovery.mjs
       - name: Disposable backup restoration
         env:
           BASIC_DB_CONTAINER: ${{ job.services.postgres.id }}
@@ -76,10 +82,37 @@ jobs:
           sleep $((61 - $(date +%-S)))
           TEST_BASE_URL=http://localhost:3401 pnpm test:mcp
           TEST_BASE_URL=http://localhost:3401 pnpm test:acceptance
+      - name: Keep integration and recovery evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: basic-integration-evidence
+          path: |
+            work/http-recovery.json
+            reports/backup-restore.json
+            /tmp/basic-server.log
+
 
   source:
     name: Package committed source
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17.6-alpine
+        env:
+          POSTGRES_USER: basic
+          POSTGRES_PASSWORD: basic_ci_only
+          POSTGRES_DB: basic
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U basic -d basic"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://basic:basic_ci_only@localhost:5432/basic
+      TEST_DATABASE_URL: postgresql://basic:basic_ci_only@localhost:5432/basic_test
+      APP_ORIGIN: http://localhost:3400
+      NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -91,6 +124,34 @@ jobs:
           cd release-artifacts
           sha256sum -c basic_*.zip.sha256
           unzip -t basic_*.zip
+      - name: Extract a fresh source consumer outside the checkout
+        run: |
+          consumer_root=$(mktemp -d "$RUNNER_TEMP/basic-consumer.XXXXXX")
+          unzip -q release-artifacts/basic_*_source.zip -d "$consumer_root"
+          version=$(node -p "require('./package.json').version")
+          consumer="$consumer_root/basic-$version"
+          test -f "$consumer/pnpm-lock.yaml"
+          test ! -e "$consumer/node_modules"
+          test ! -e "$consumer/.git"
+          echo "SOURCE_CONSUMER=$consumer" >> "$GITHUB_ENV"
+      - run: npm install --global pnpm@11.19.0
+      - name: Frozen install from the extracted archive
+        working-directory: ${{ env.SOURCE_CONSUMER }}
+        run: pnpm install --frozen-lockfile
+      - run: docker exec ${{ job.services.postgres.id }} createdb -U basic basic_test
+      - name: Build and test the extracted PostgreSQL consumer
+        working-directory: ${{ env.SOURCE_CONSUMER }}
+        run: |
+          pnpm db:migrate && pnpm catalog:curate
+          pnpm typecheck && pnpm test && pnpm evaluate && pnpm build
+      - name: Smoke the extracted production server with the real SDK
+        working-directory: ${{ env.SOURCE_CONSUMER }}
+        run: |
+          pnpm start > "$RUNNER_TEMP/basic-consumer-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          node --input-type=module -e "for(let i=0;i<60;i++){try{const r=await fetch('http://localhost:3400/ready');if(r.ok)process.exit(0);}catch{}await new Promise(r=>setTimeout(r,1000));}process.exit(1);"
+          pnpm test:mcp
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: basic-source
