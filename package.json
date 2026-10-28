@@ -31,18 +31,18 @@
     "package:release": "node scripts/package-release.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.31.0",
+    "@modelcontextprotocol/sdk": "1.32.0",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "dotenv": "17.4.2",
     "drizzle-orm": "0.45.2",
     "ipaddr.js": "2.5.0",
-    "next": "16.3.8",
+    "next": "16.4.1",
     "postgres": "3.4.9",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "undici": "8.10.2",
-    "zod": "4.5.4"
+    "undici": "8.12.2",
+    "zod": "4.6.6"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
@@ -54,6 +54,7 @@
     "tailwindcss": "4.3.3",
     "tsx": "4.23.13",
     "typescript": "7.0.2",
-    "vitest": "5.0.0"
+    "vite": "8.2.4",
+    "vitest": "5.0.3"
   }
 }
