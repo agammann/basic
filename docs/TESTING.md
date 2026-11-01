@@ -12,7 +12,7 @@ Keep the local database running. Create the disposable test database once:
 docker compose exec -T db createdb -U basic basic_test
 ```
 
-If `basic_test` already exists from an earlier run, skip creation. Tests intentionally truncate tables in that database and refuse a database name other than `basic_test`. Never point them at data you want to keep. The default test connection matches the local Compose credentials and port; `TEST_DATABASE_URL` can override it through the shell environment, as CI does.
+If `basic_test` already exists from an earlier run, skip creation. Tests intentionally truncate tables in that database and refuse a database name other than `basic_test`. Never point them at data you want to keep. The default test connection uses the generated local `DATABASE_URL` with the database name changed to `basic_test`; `TEST_DATABASE_URL` can override it through the shell environment, as CI does.
 
 Stop any running development server before the production build. Then run:
 
