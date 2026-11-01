@@ -38,23 +38,15 @@ pnpm install --frozen-lockfile
 
 Run all remaining commands from the `basic` directory. Commands work in PowerShell and a POSIX shell unless a platform is named. Run each command separately and resolve errors before continuing.
 
-The application and operator load `.env` through dotenv. A `.env` file is optional for the default local setup. If you need one, copy the example once, before editing it:
-
-Windows PowerShell:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Linux or macOS:
+Generate local credentials before starting Docker:
 
 ```sh
-cp .env.example .env
+node scripts/setup-env.mjs
 ```
 
-Do not overwrite an existing `.env`. Keep it private. Use `.env` for settings shared by the application and operator commands; a Next.js `.env.local` file is not a substitute for operator configuration. Existing shell environment variables take precedence, so use a clean terminal or deliberately set the Basic values if another project's settings are present.
+The script creates `.env` with a unique PostgreSQL password and a matching `DATABASE_URL`, then preserves that file on later runs. Keep it private. The application and operator load `.env` through dotenv; a Next.js `.env.local` file is not a substitute for operator configuration. Existing shell environment variables take precedence, so use a clean terminal or deliberately set the Basic values if another project's settings are present.
 
-The defaults connect to database `basic` at `localhost:55432`, with the development credentials in [.env.example](../.env.example). Those credentials are only for the loopback bound local container. Changing `.env` does not change the Compose container's database credentials or port. Production uses separate roles and configuration described in [Deployment](../DEPLOYMENT.md).
+The generated connection uses database `basic` at `localhost:55432`. Compose reads the same password from `.env` and publishes PostgreSQL only on loopback. Production uses separate roles and configuration described in [Deployment](../DEPLOYMENT.md).
 
 ## Create the local catalog
 
@@ -94,6 +86,14 @@ pnpm dev
 ```
 
 After pulling a code update, stop the app, run `pnpm install --frozen-lockfile` and `pnpm db:migrate`, then restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
+
+### Rotate an existing local database password
+
+An existing `basic-data` volume retains its previous database password. Updating the source or creating `.env` does not rotate that role. Stop the app, keep the database available, and make a verified backup using the [operations guide](../OPERATIONS.md) before changing credentials.
+
+If `.env` is absent, run `node scripts/setup-env.mjs` to generate a new password and matching URL. If it exists, generate a new password with `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`, keep it private, and set both `POSTGRES_PASSWORD=<new password>` and `DATABASE_URL=postgresql://basic:<same new password>@localhost:55432/basic` in `.env`. The generated alphabet is URL safe. Preserve the other settings and the database volume.
+
+Run `docker compose up -d --no-recreate db`, then `docker compose exec db psql -U basic -d basic`. At the `psql` prompt, enter `\password basic` and provide the new password twice. Exit with `\q`. The password prompts keep the value out of shell commands. Finish with `docker compose up -d --force-recreate --wait db` and `pnpm db:migrate`, then restart the app. If the migration cannot connect, check that both `.env` fields use the same new password before retrying; keep the backup and volume intact.
 
 ## Troubleshooting
 

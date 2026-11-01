@@ -4,7 +4,7 @@ services:
     image: postgres:17.6-alpine
     environment:
       POSTGRES_USER: basic
-      POSTGRES_PASSWORD: basic_local_only
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run node scripts/setup-env.mjs first}
       POSTGRES_DB: basic
     ports: ["127.0.0.1:55432:5432"]
     volumes: ["basic-data:/var/lib/postgresql/data"]

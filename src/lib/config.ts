@@ -6,9 +6,7 @@ const positive = (fallback: number, max: number) =>
   z.coerce.number().int().min(1).max(max).default(fallback);
 export const config = z
   .object({
-    DATABASE_URL: z
-      .string()
-      .default("postgresql://basic:basic_local_only@localhost:55432/basic"),
+    DATABASE_URL: z.string().url(),
     APP_ORIGIN: z.string().url().default("http://localhost:3400"),
     EVIDENCE_FRESH_DAYS: positive(14, 365),
     RATE_LIMIT_PER_MINUTE: positive(120, 10000),
