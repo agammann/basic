@@ -9,8 +9,7 @@ on:
       - deploy/db-init.sh
       - migrations/**
       - scripts/operator.ts
-      - src/lib/db.ts
-      - src/lib/config.ts
+      - src/lib/**
       - package.json
       - pnpm-lock.yaml
       - pnpm-workspace.yaml

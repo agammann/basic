@@ -42,20 +42,20 @@ function initializeRoles(name) {
   const init = readFileSync('deploy/db-init.sh', 'utf8').replaceAll('\r\n', '\n');
   run('docker', ['exec', '-i', '-e', `BASIC_APP_PASSWORD=${readerPassword}`, '-e', `BASIC_OPERATOR_PASSWORD=${operatorPassword}`, name, 'sh', '-s'], { input: init });
 }
-function sql(name, role, password, input) {
-  return run('docker', ['exec', '-i', '-e', `PGPASSWORD=${password}`, name, 'psql', '-h', '127.0.0.1', '-X', '-v', 'ON_ERROR_STOP=1', '-U', role, '-d', 'basic', '-At'], { input }).toString().trim();
+function sql(name, role, password, input, db = 'basic') {
+  return run('docker', ['exec', '-i', '-e', `PGPASSWORD=${password}`, name, 'psql', '-h', '127.0.0.1', '-X', '-v', 'ON_ERROR_STOP=1', '-U', role, '-d', db, '-At'], { input }).toString().trim();
 }
-function migrate(name) {
+function migrate(name, db = 'basic') {
   const port = docker('port', name, '5432/tcp').toString().trim().match(/^127\.0\.0\.1:(\d+)$/)?.[1];
   if (!port) throw new Error('Expected a loopback-only fixture port.');
-  const env = { ...process.env, DATABASE_URL: `postgresql://basic_operator:${operatorPassword}@127.0.0.1:${port}/basic` };
+  const env = { ...process.env, DATABASE_URL: `postgresql://basic_operator:${operatorPassword}@127.0.0.1:${port}/${db}` };
   run(process.execPath, [resolve('node_modules/tsx/dist/cli.mjs'), 'scripts/operator.ts', 'migrate'], { env });
 }
-function verifyRoles(name) {
-  assert.equal(sql(name, 'basic_reader', readerPassword, `SELECT registry_name FROM profiles WHERE id='fixture-profile'`), 'example.invalid/fixture');
-  assert.equal(sql(name, 'basic_admin', adminPassword, `SELECT tableowner FROM pg_tables WHERE schemaname='public' AND tablename='profiles'`), 'basic_operator');
-  sql(name, 'basic_reader', readerPassword, `INSERT INTO rate_buckets(key,window_at,count) VALUES ('fixture-rate',now(),1) ON CONFLICT(key) DO UPDATE SET count=rate_buckets.count+1`);
-  const denied = spawnSync('docker', ['exec', '-i', '-e', `PGPASSWORD=${readerPassword}`, name, 'psql', '-h', '127.0.0.1', '-X', '-v', 'ON_ERROR_STOP=1', '-U', 'basic_reader', '-d', 'basic'], { input: `DELETE FROM profiles WHERE id='fixture-profile'`, encoding: 'utf8' });
+function verifyRoles(name, db = 'basic') {
+  assert.equal(sql(name, 'basic_reader', readerPassword, `SELECT registry_name FROM profiles WHERE id='fixture-profile'`, db), 'example.invalid/fixture');
+  assert.equal(sql(name, 'basic_admin', adminPassword, `SELECT tableowner FROM pg_tables WHERE schemaname='public' AND tablename='profiles'`, db), 'basic_operator');
+  sql(name, 'basic_reader', readerPassword, `INSERT INTO rate_buckets(key,window_at,count) VALUES ('fixture-rate',now(),1) ON CONFLICT(key) DO UPDATE SET count=rate_buckets.count+1`, db);
+  const denied = spawnSync('docker', ['exec', '-i', '-e', `PGPASSWORD=${readerPassword}`, name, 'psql', '-h', '127.0.0.1', '-X', '-v', 'ON_ERROR_STOP=1', '-U', 'basic_reader', '-d', db], { input: `DELETE FROM profiles WHERE id='fixture-profile'`, encoding: 'utf8' });
   if (denied.error || denied.status === 0 || !/permission denied for table profiles/i.test(denied.stderr)) throw new Error('Reader unexpectedly modified profiles or failed for another reason.');
 }
 const snapshot = `SELECT (SELECT count(*) FROM profiles) || ':' || (SELECT count(*) FROM migrations) || ':' || (SELECT count(*) FROM registry_records);`;
@@ -71,6 +71,7 @@ INSERT INTO profiles(id,registry_name,published,data,search_vector) VALUES ('fix
   verifyRoles(oldName);
   // There are no app writers in this fixture; retain source after the final dump.
   const dump = docker('exec', oldName, 'pg_dump', '-U', 'basic_admin', '-d', 'basic', '-Fc');
+  const productionStyleDump = docker('exec', oldName, 'pg_dump', '-U', 'basic_admin', '-d', 'basic', '-Fc', '--no-owner', '--no-acl');
   docker('stop', oldName);
   docker('run', '-d', '--name', invalidName, '--network', 'none', '-e', 'POSTGRES_USER=basic_admin', '-e', `POSTGRES_PASSWORD=${adminPassword}`, '-e', 'POSTGRES_DB=basic', '-e', 'PGDATA=/var/lib/postgresql/data', '-v', `${oldVolume}:/var/lib/postgresql/data`, 'postgres:18.4-alpine');
   created.push(invalidName);
@@ -87,6 +88,21 @@ INSERT INTO profiles(id,registry_name,published,data,search_vector) VALUES ('fix
   assert.equal(sql(newName, 'basic_admin', adminPassword, snapshot), before);
   migrate(newName);
   verifyRoles(newName);
+  // The documented no-owner/no-ACL restore as the admin does not itself
+  // restore the application's reader permissions, even when roles exist.
+  docker('exec', newName, 'createdb', '-U', 'basic_admin', 'basic_noacl_fixture');
+  run('docker', ['exec', '-i', newName, 'pg_restore', '--exit-on-error', '--no-owner', '--no-acl', '-U', 'basic_admin', '-d', 'basic_noacl_fixture'], { input: productionStyleDump });
+  const noAclRead = spawnSync('docker', ['exec', '-i', '-e', `PGPASSWORD=${readerPassword}`, newName, 'psql', '-h', '127.0.0.1', '-X', '-v', 'ON_ERROR_STOP=1', '-U', 'basic_reader', '-d', 'basic_noacl_fixture'], { input: 'SELECT * FROM profiles', encoding: 'utf8' });
+  if (noAclRead.error || noAclRead.status === 0 || !/permission denied for table profiles/i.test(noAclRead.stderr)) throw new Error('Expected the no-ACL restore to lack reader access.');
+  // Demonstrate one fixture-specific recovery: assign the fresh schema to
+  // the operator, restore as that role, and explicitly reapply reader grants.
+  docker('exec', newName, 'createdb', '-U', 'basic_admin', 'basic_repaired_fixture');
+  sql(newName, 'basic_admin', adminPassword, `ALTER SCHEMA public OWNER TO basic_operator; GRANT USAGE ON SCHEMA public TO basic_reader; ALTER DEFAULT PRIVILEGES FOR ROLE basic_operator IN SCHEMA public GRANT SELECT ON TABLES TO basic_reader;`, 'basic_repaired_fixture');
+  run('docker', ['exec', '-i', '-e', `PGPASSWORD=${operatorPassword}`, newName, 'pg_restore', '-h', '127.0.0.1', '--exit-on-error', '--no-owner', '--no-acl', '-U', 'basic_operator', '-d', 'basic_repaired_fixture'], { input: productionStyleDump });
+  sql(newName, 'basic_operator', operatorPassword, `GRANT SELECT ON ALL TABLES IN SCHEMA public TO basic_reader; GRANT INSERT, UPDATE, DELETE ON rate_buckets TO basic_reader;`, 'basic_repaired_fixture');
+  assert.equal(sql(newName, 'basic_admin', adminPassword, snapshot, 'basic_repaired_fixture'), before);
+  migrate(newName, 'basic_repaired_fixture');
+  verifyRoles(newName, 'basic_repaired_fixture');
   sql(newName, 'basic_operator', operatorPassword, `INSERT INTO profiles(id,registry_name,published,data,search_vector) VALUES ('post-cutover','example.invalid/fixture',false,'{}',to_tsvector('english','later write'))`);
   assert.equal(sql(newName, 'basic_admin', adminPassword, snapshot), '2:4:1');
   docker('stop', newName);
