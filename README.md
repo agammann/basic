@@ -34,13 +34,14 @@ git clone https://github.com/agammann/basic.git
 cd basic
 npm install --global pnpm@11.19.0
 pnpm install --frozen-lockfile
+node scripts/setup-env.mjs
 docker compose up -d --wait db
 pnpm db:migrate
 pnpm catalog:curate
 pnpm dev
 ```
 
-After starting the local server, open `http://localhost:3400` in your browser. This address is only available on your own computer while the server is running. The local database defaults in `.env.example` are used when DATABASE_URL is unset; ensure an unrelated DATABASE_URL is not inherited from your shell. Copy `.env.example` to `.env` to customize it (`Copy-Item .env.example .env` in PowerShell, `cp .env.example .env` on Linux/macOS). Never commit `.env`.
+After starting the local server, open `http://localhost:3400` in your browser. This address is only available on your own computer while the server is running. The setup script writes a private `.env` with a unique local database password and matching connection URL. It preserves an existing file; follow [local setup](docs/SETUP.md) to rotate an older installation. Use a clean terminal so another project's `DATABASE_URL` or `POSTGRES_PASSWORD` does not override the local values. Never commit `.env`.
 
 The curated bootstrap loads **30 genuine, source-dated profiles**, not synthetic fixtures. It does not run network checks or execute discovered packages. A fresh database correctly shows “Not tested” until checks are run; archived test reports are not imported as new observations.
 

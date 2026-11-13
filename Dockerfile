@@ -12,7 +12,7 @@ COPY schemas ./schemas
 COPY curation/profiles ./curation/profiles
 COPY curation/sources/*.registry.json ./curation/sources/
 COPY curation/approved-endpoints.json ./curation/approved-endpoints.json
-RUN pnpm build
+RUN DATABASE_URL=postgresql://build.invalid/unused pnpm build
 
 FROM node:24.19.0-bookworm-slim AS runtime
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3400 HOSTNAME=0.0.0.0
@@ -22,10 +22,10 @@ COPY --from=build --chown=node:node /app/.next/static ./.next/static
 USER node
 EXPOSE 3400
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD node -e "fetch('http://localhost:3400/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
-CMD ["node", "server.js"]
+CMD ["sh", "-c", "test -n \"$DATABASE_URL\" || { echo 'DATABASE_URL is required' >&2; exit 1; }; exec node server.js"]
 
 FROM build AS worker
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1
 RUN mkdir -p /logs && chown node:node /logs
 USER node
-CMD ["pnpm", "worker"]
+CMD ["sh", "-c", "test -n \"$DATABASE_URL\" || { echo 'DATABASE_URL is required' >&2; exit 1; }; exec pnpm worker"]
