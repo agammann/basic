@@ -20,6 +20,10 @@ cp deploy/production.env.example deploy/production.env
 
 Edit the private `deploy/production.env`: set BASIC_DOMAIN and three distinct random hexadecimal database passwords (at least 32 bytes). Hex avoids URI escaping problems. The example values are placeholders and must be replaced. Keep this file private and excluded from Git. No credentials belong in profile curation.
 
+This checkout initializes PostgreSQL 18 only for a confirmed fresh installation. First inventory any earlier Basic installation's actual host, Compose project, storage mapping, overrides, remote database and backups. The startup guard sees only the selected project's `pgdata` volume; it cannot discover storage elsewhere. A read-only mount does not stop other writers, so stop potential Basic writers and storage changes throughout initialization. If an existing database may contain data, keep its previous source and mapping and plan a separate reviewed migration using [the PostgreSQL rehearsal](docs/postgres18-rehearsal.md). Do not initialize a new database as a substitute for migration.
+
+On the selected local Docker host, only after confirming there is no existing Basic database, run `node scripts/confirm-postgres18-fresh.mjs production` and enter the requested confirmation phrase. The helper checks for existing project containers and invokes a fresh-only initialization override. It starts no public-facing services. If initialization is interrupted, preserve both volumes and investigate before any retry; see [local setup](docs/SETUP.md#postgresql-18-initialization-and-recovery).
+
 ```sh
 docker compose --env-file deploy/production.env -f compose.production.yaml config --quiet
 docker compose --env-file deploy/production.env -f compose.production.yaml build

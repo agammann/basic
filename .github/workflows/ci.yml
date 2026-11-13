@@ -7,6 +7,19 @@ on:
 permissions:
   contents: read
 jobs:
+  postgres18-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '24.19.0'
+      - run: node scripts/test-postgres18-guard.mjs
+      - run: node scripts/test-postgres18-helper.mjs
+
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -16,7 +29,7 @@ jobs:
         node: ['24.19.0', '26.13.1']
     services:
       postgres:
-        image: postgres:17.6-alpine
+        image: postgres:18.4-alpine
         env:
           POSTGRES_USER: basic
           POSTGRES_PASSWORD: basic_ci_only
@@ -103,7 +116,7 @@ jobs:
     timeout-minutes: 20
     services:
       postgres:
-        image: postgres:17.6-alpine
+        image: postgres:18.4-alpine
         env:
           POSTGRES_USER: basic
           POSTGRES_PASSWORD: basic_ci_only
@@ -244,7 +257,7 @@ jobs:
         run: exit 1
   publish:
     name: Publish verified source release
-    needs: [validate, source, caddy-validate, artifact-transfer, artifact-missing-guard]
+    needs: [validate, source, caddy-validate, artifact-transfer, artifact-missing-guard, postgres18-guard]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:

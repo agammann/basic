@@ -25,7 +25,7 @@ The redesigned Sites website and its D1 deployment are maintained in a separate 
 
 ## Quick start for developers
 
-For this checkout, use **Node.js 24.x** or **Node.js 26.13.1 or later within 26.x**, **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. CI tests Node 24.19.0 and 26.13.1 on Linux. The published v1.0.0 source archive predates Node 26 support; follow its included instructions. Local PostgreSQL is pinned to 17.6. Run from the repository root. Port 3400 is the website and 55432 is local PostgreSQL. Do not reuse another project's database.
+For this checkout, use **Node.js 24.x** or **Node.js 26.13.1 or later within 26.x**, **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. CI tests Node 24.19.0 and 26.13.1 on Linux. The published v1.0.0 source archive uses PostgreSQL 17 and predates Node 26 support; follow its included instructions. This checkout uses PostgreSQL 18 for fresh installations. Existing installations require the assessment in [Local setup](docs/SETUP.md); do not initialize a new volume as a substitute for migration. Port 3400 is the website and 55432 is local PostgreSQL.
 
 Start Docker with Linux containers enabled. Run each command separately and resolve errors before continuing. Use a fresh terminal without another project's database or application-origin settings.
 
@@ -35,7 +35,7 @@ cd basic
 npm install --global pnpm@11.19.0
 pnpm install --frozen-lockfile
 node scripts/setup-env.mjs
-docker compose up -d --wait db
+node scripts/confirm-postgres18-fresh.mjs local
 pnpm db:migrate
 pnpm catalog:curate
 pnpm dev

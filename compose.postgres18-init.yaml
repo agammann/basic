@@ -1,0 +1,5 @@
+services:
+  db:
+    entrypoint: ["sh", "/basic/postgres18-guard.sh", "initialize"]
+    environment:
+      BASIC_PG18_FRESH_INSTALL: ${BASIC_PG18_FRESH_INSTALL:?Confirm this is a fresh installation as documented}
