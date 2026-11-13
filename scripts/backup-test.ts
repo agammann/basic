@@ -64,7 +64,7 @@ try {
   await fs.mkdir("reports", { recursive: true });
   const report = {
     timestamp: new Date().toISOString(),
-    database: "PostgreSQL 17.6 in Docker",
+    database: `PostgreSQL ${exec(["psql", "-U", "basic", "-d", "basic", "-Atc", "SHOW server_version"]).trim()}`,
     source: "basic",
     disposableTarget: target,
     counts: actual.trim().split("\n"),

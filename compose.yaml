@@ -1,17 +1,24 @@
 name: basic
 services:
   db:
-    image: postgres:17.6-alpine
+    image: postgres:18.4-alpine
+    entrypoint: ["sh", "/basic/postgres18-guard.sh", "start"]
+    command: ["postgres"]
     environment:
       POSTGRES_USER: basic
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run node scripts/setup-env.mjs first}
       POSTGRES_DB: basic
     ports: ["127.0.0.1:55432:5432"]
-    volumes: ["basic-data:/var/lib/postgresql/data"]
+    volumes:
+      - "basic-data:/basic/legacy:ro"
+      - "basic-data-18:/var/lib/postgresql"
+      - "./deploy/postgres18-guard.sh:/basic/postgres18-guard.sh:ro"
+      - "./deploy/postgres18-ready.sh:/docker-entrypoint-initdb.d/zz-basic-ready.sh:ro"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U basic -d basic"]
+      test: ["CMD-SHELL", "test -f /var/lib/postgresql/18/docker/.basic-init-complete && pg_isready -h 127.0.0.1 -U basic -d basic"]
       interval: 5s
       timeout: 3s
       retries: 20
 volumes:
   basic-data:
+  basic-data-18:

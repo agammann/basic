@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import os from "node:os";
 import { searchServers } from "../src/lib/search";
-import { closeDb } from "../src/lib/db";
+import { closeDb, sql } from "../src/lib/db";
 const results: Record<string, unknown> = {};
 try {
   for (const split of ["development", "held-out"]) {
@@ -83,6 +83,8 @@ try {
       }),
     );
   times.sort((a, b) => a - b);
+  const [database] = await sql<{ version: string }[]>`SELECT current_setting('server_version') AS version`;
+  if (!database) throw Error("database-version-unavailable");
   results.benchmark = {
     environment: {
       platform: os.platform(),
@@ -91,7 +93,7 @@ try {
       cpu: os.cpus()[0]?.model,
       memoryGiB: Math.round(os.totalmem() / 1024 ** 3),
       node: process.version,
-      database: "PostgreSQL 17.6 in Docker Desktop",
+      database: `PostgreSQL ${database.version}`,
     },
     workload:
       "20 warmups, then 200 PostgreSQL-backed searches, concurrency 5, 30 profiles; direct shared search service, not HTTP",

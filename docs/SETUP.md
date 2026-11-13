@@ -50,8 +50,17 @@ The generated connection uses database `basic` at `localhost:55432`. Compose rea
 
 ## Create the local catalog
 
+These instructions are for the checked-out revision, not the published v1.0.0 archive. Before a fresh initialization, identify any previous Basic installation's actual Docker host, Compose project, volume or bind mount, `PGDATA`, overrides and remote database. The default guard sees only this project's `basic-data` mount; it cannot discover data under another project, external volume, bind mount, or remote server. A read-only mount does not stop other processes from writing to that volume, so stop potential Basic writers and storage changes throughout initialization. Do not use the fresh-install command when any existing Basic database may contain data. Keep its original checkout, mapping and verified backup and plan a separate migration as described in [the PostgreSQL rehearsal](postgres18-rehearsal.md).
+
+Only after confirming that no Basic database exists, initialize the separate PostgreSQL 18 volume once. This command requires the exact confirmation phrase shown below and checks the default old and new volumes. It does not migrate data:
+
 ```sh
-docker compose up -d --wait db
+node scripts/confirm-postgres18-fresh.mjs local
+```
+
+The command starts the initialized database with the standard Compose file. Then run:
+
+```sh
 pnpm db:migrate
 pnpm catalog:curate
 pnpm dev
@@ -85,15 +94,21 @@ docker compose up -d --wait db
 pnpm dev
 ```
 
-After pulling a code update, stop the app and run `pnpm install --frozen-lockfile`. If this installation predates generated local database credentials, follow the password rotation steps below before using the normal restart or migration steps; the new configuration requires `POSTGRES_PASSWORD` and a matching `DATABASE_URL`. Otherwise, run `pnpm db:migrate` and restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
+## PostgreSQL 18 initialization and recovery
+
+The initialization helper asks for `NO EXISTING BASIC DATABASE` and checks that the selected Compose project has no existing containers. The first-use override refuses a populated legacy `basic-data` volume, a nonempty `basic-data-18` target, an unreadable mount, or a prior initialization attempt. The final initialization script records the PostgreSQL cluster identifier after earlier initialization scripts succeed. Normal startup requires that marker, a valid PostgreSQL 18 cluster and an empty legacy volume. A cluster ID and marker do not prove the contents are complete or discover data stored elsewhere.
+
+If initialization or the helper is interrupted, **do not remove or reset either volume and do not repeat the fresh command**. An initialization attempt may have created data or roles. Keep the old and new volumes, inspect the logs and actual mappings without exposing credentials, and arrange an installation-specific recovery. If PostgreSQL initialization completed and the helper was interrupted before switching back to the normal Compose file, the normal `docker compose up -d --wait db` verifies the marker and starts it. A missing or invalid marker, missing cluster, or populated legacy mount stops startup and requires review. Never fabricate a marker or remove a lock to force startup.
+
+After pulling a code update, stop the app and run `pnpm install --frozen-lockfile`. An existing PostgreSQL 17 installation must remain on its previous source and mapping until separately migrated; the fresh-initialization command is not a migration. For an existing PostgreSQL 18 installation, run `pnpm db:migrate` and restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
 
 ### Rotate an existing local database password
 
-An existing `basic-data` volume retains its previous database password. Updating the source or creating `.env` does not rotate that role. Stop the app, keep the database available, and retain a verified backup before changing credentials. The local restore drill in the [operations guide](../OPERATIONS.md) removes its temporary dump; it does not retain a backup for this rotation.
+An existing PostgreSQL 17 `basic-data` volume retains its previous database password. Use the previous source revision and its matching Compose file to rotate it; this PostgreSQL 18 checkout intentionally refuses to start against that populated legacy volume. Updating the source or creating `.env` does not rotate a database role. Stop the app, keep the database available, and retain a verified backup before changing credentials. The local restore drill in the [operations guide](../OPERATIONS.md) removes its temporary dump; it does not retain a backup for this rotation.
 
-If `.env` is absent, run `node scripts/setup-env.mjs` to generate a new password and matching URL. If it exists, generate a new password with `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`, keep it private, and set both `POSTGRES_PASSWORD=<new password>` and `DATABASE_URL=postgresql://basic:<same new password>@localhost:55432/basic` in `.env`. The generated alphabet is URL safe. Preserve the other settings and the database volume.
+In the **previous PostgreSQL 17 checkout**, if `.env` is absent, run `node scripts/setup-env.mjs` to generate a new password and matching URL. If it exists, generate a new password with `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`, keep it private, and set both `POSTGRES_PASSWORD=<new password>` and `DATABASE_URL=postgresql://basic:<same new password>@localhost:55432/basic` in `.env`. The generated alphabet is URL safe. Preserve the other settings and the database volume.
 
-Run `docker compose up -d --no-recreate db`, then `docker compose exec db psql -U basic -d basic`. At the `psql` prompt, enter `\password basic` and provide the new password twice. Exit with `\q`. The password prompts keep the value out of shell commands. Finish with `docker compose up -d --force-recreate --wait db` and `pnpm db:migrate`, then restart the app. If the migration cannot connect, check that both `.env` fields use the same new password before retrying; keep the backup and volume intact.
+Still in that **previous PostgreSQL 17 checkout**, run `docker compose up -d --no-recreate db`, then `docker compose exec db psql -U basic -d basic`. At the `psql` prompt, enter `\password basic` and provide the new password twice. Exit with `\q`. The password prompts keep the value out of shell commands. Finish with `docker compose up -d --force-recreate --wait db` and `pnpm db:migrate`, then restart the app. If the migration cannot connect, check that both `.env` fields use the same new password before retrying; keep the backup and volume intact.
 
 ## Troubleshooting
 

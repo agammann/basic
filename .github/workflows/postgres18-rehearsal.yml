@@ -8,6 +8,13 @@ on:
       - OPERATIONS.md
       - .github/workflows/postgres18-rehearsal.yml
       - deploy/db-init.sh
+      - deploy/postgres18-guard.sh
+      - deploy/postgres18-ready.sh
+      - compose.yaml
+      - compose.production.yaml
+      - compose.postgres18-init.yaml
+      - scripts/test-postgres18-guard.mjs
+      - scripts/confirm-postgres18-fresh.mjs
       - migrations/**
       - scripts/operator.ts
       - src/lib/**

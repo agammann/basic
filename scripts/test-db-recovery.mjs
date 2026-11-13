@@ -27,7 +27,7 @@ const docker = (...args) =>
   execFileSync("docker", args, { encoding: "utf8", timeout: 60000 });
 const [owned] = JSON.parse(docker("inspect", container));
 assert.equal(owned.Id, container);
-assert.equal(owned.Config.Image, "postgres:17.6-alpine");
+assert.equal(owned.Config.Image, "postgres:18.4-alpine");
 assert.equal(owned.State.Running, true);
 const version = docker("exec", container, "postgres", "--version").trim();
 const request = (path) =>

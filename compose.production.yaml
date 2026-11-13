@@ -6,7 +6,9 @@ x-log: &logs
     max-file: "3"
 services:
   db:
-    image: postgres:17.6-alpine
+    image: postgres:18.4-alpine
+    entrypoint: ["sh", "/basic/postgres18-guard.sh", "start"]
+    command: ["postgres"]
     environment:
       POSTGRES_USER: basic_admin
       POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:?Set DB_ADMIN_PASSWORD}
@@ -15,13 +17,16 @@ services:
       BASIC_OPERATOR_PASSWORD: ${DB_OPERATOR_PASSWORD:?Set DB_OPERATOR_PASSWORD}
     volumes:
       [
-        "pgdata:/var/lib/postgresql/data",
+        "pgdata:/basic/legacy:ro",
+        "pgdata-18:/var/lib/postgresql",
+        "./deploy/postgres18-guard.sh:/basic/postgres18-guard.sh:ro",
         "./deploy/db-init.sh:/docker-entrypoint-initdb.d/basic.sh:ro",
+        "./deploy/postgres18-ready.sh:/docker-entrypoint-initdb.d/zz-basic-ready.sh:ro",
       ]
     networks: [private]
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U basic_admin -d basic"]
+      test: ["CMD-SHELL", "test -f /var/lib/postgresql/18/docker/.basic-init-complete && pg_isready -h 127.0.0.1 -U basic_admin -d basic"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -90,7 +95,7 @@ services:
     restart: unless-stopped
     logging: *logs
   backup:
-    image: postgres:17.6-alpine
+    image: postgres:18.4-alpine
     environment:
       PGHOST: db
       PGUSER: basic_admin
@@ -111,6 +116,7 @@ networks:
       config: [{ subnet: 172.30.89.0/24 }]
 volumes:
   pgdata:
+  pgdata-18:
   backups:
   caddy-data:
   caddy-config:
