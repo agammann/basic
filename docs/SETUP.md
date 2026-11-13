@@ -8,7 +8,7 @@ This guide runs the PostgreSQL application in this repository on your computer. 
 
 | Dependency | Requirement |
 | --- | --- |
-| Node.js | 24.x; recorded release validation used 24.19.0 |
+| Node.js | For this checkout, 24.x or 26.13.1+ within 26.x; CI tests 24.19.0 and 26.13.1 on Linux. The published v1.0.0 archive predates Node 26 support. |
 | pnpm | 11.19.0, as declared in package.json |
 | Git | Available in the terminal |
 | Docker | Engine or Desktop, Linux containers, Compose v2 |
