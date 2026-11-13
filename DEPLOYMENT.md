@@ -34,6 +34,8 @@ docker compose --env-file deploy/production.env -f compose.production.yaml up -d
 
 The worker's egress network uses 172.30.89.0/24, with address 172.30.89.10. Confirm it does not conflict with existing host networks. The firewall rules affect only that source address. The internal database network is separate. Persist firewall rules using the host's supported mechanism and verify after every reboot. IPv6 is not enabled for this egress network. The app-level fetcher independently rejects nonpublic IPv4/IPv6 destinations.
 
+Caddy 2.11.9 limits request headers to 16 KiB, drops header names containing dots or underscores, and closes a request-body read or response write that makes no progress for one minute. Assess client headers and stalled transfers before upgrading; the existing 32 KB body limit and 30-second upstream response-header timeout remain configured. Local proxy tests do not establish public certificate issuance, DNS or deployed service behavior.
+
 Caddy obtains certificates after the domain resolves and inbound ports are reachable. Confirm `https://YOUR_DOMAIN/health` and `/ready`, browse a real search/profile, then set TEST_BASE_URL to that HTTPS origin and run `pnpm test:mcp`. APP_ORIGIN must exactly match the public origin; it drives Host/Origin validation and generated Basic setup URLs.
 
 ## Before calling deployment complete
