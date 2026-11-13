@@ -7,7 +7,7 @@ import { URL } from 'node:url';
 const mode = process.argv[2];
 if (!['local', 'production'].includes(mode) || process.argv.length !== 3)
   throw Error('Choose exactly local or production.');
-const selector = /^(DATABASE_URL|POSTGRES_PASSWORD|DB_ADMIN_PASSWORD|DB_APP_PASSWORD|DB_OPERATOR_PASSWORD|BASIC_DOMAIN|BASIC_PG18_FRESH_INSTALL|COMPOSE_.*|DOCKER_HOST|DOCKER_CONTEXT|DOTENV_CONFIG_.*|PG[A-Z_]*)$/i;
+const selector = /^(DATABASE_URL|POSTGRES_PASSWORD|DB_ADMIN_PASSWORD|DB_APP_PASSWORD|DB_OPERATOR_PASSWORD|BASIC_DOMAIN|BASIC_PG18_FRESH_INSTALL|COMPOSE_.*|DOCKER_.*|DOTENV_CONFIG_.*|PG[A-Z_]*)$/i;
 for (const key of Object.keys(process.env))
   if (selector.test(key)) throw Error(`Unset inherited ${key} before initialization.`);
 if (['compose.override.yaml', 'compose.override.yml', 'docker-compose.override.yaml', 'docker-compose.override.yml'].some(existsSync))

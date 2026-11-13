@@ -26,7 +26,7 @@ function check(mode, answer, extra = {}, options = {}) {
   writeFileSync(join(cwd, mode === 'local' ? '.env' : 'deploy/production.env'), options.file ?? (mode === 'local' ? local : production));
   if (options.extraFile) writeFileSync(join(cwd, options.extraFile), 'DATABASE_URL=postgresql://other.invalid/other\n');
   const clean = { ...process.env };
-  for (const name of Object.keys(clean)) if (/^(DATABASE_URL|POSTGRES_PASSWORD|DB_ADMIN_PASSWORD|DB_APP_PASSWORD|DB_OPERATOR_PASSWORD|BASIC_DOMAIN|BASIC_PG18_FRESH_INSTALL|COMPOSE_.*|DOCKER_HOST|DOCKER_CONTEXT|DOTENV_CONFIG_.*|PG[A-Z_]*)$/i.test(name)) delete clean[name];
+  for (const name of Object.keys(clean)) if (/^(DATABASE_URL|POSTGRES_PASSWORD|DB_ADMIN_PASSWORD|DB_APP_PASSWORD|DB_OPERATOR_PASSWORD|BASIC_DOMAIN|BASIC_PG18_FRESH_INSTALL|COMPOSE_.*|DOCKER_.*|DOTENV_CONFIG_.*|PG[A-Z_]*)$/i.test(name)) delete clean[name];
   const result = spawnSync(process.execPath, [script, mode], {
     cwd, env: { ...clean, PATH: `${dir}${delimiter}${clean.PATH}`, BASIC_MOCK_LOG: log, ...extra },
     input: `${answer}\n`, encoding: 'utf8', timeout: 10000,
@@ -39,6 +39,7 @@ for (const mode of ['local', 'production']) {
     check(mode, 'no'),
     check(mode, confirmed, { BASIC_MOCK_EXISTING: '{"ID":"existing"}' }),
     check(mode, confirmed, { COMPOSE_FILE: 'unexpected' }),
+    check(mode, confirmed, { DOCKER_CONFIG: 'unexpected' }),
     check(mode, confirmed, { BASIC_MOCK_HOST: 'tcp://fixture.invalid:2375' }),
     check(mode, confirmed, { DATABASE_URL: 'postgresql://remote.invalid/real' }),
     check(mode, confirmed, { POSTGRES_PASSWORD: 'other' }),
@@ -60,11 +61,13 @@ for (const failure of [
   check('local', confirmed, {}, { file: local.replace('POSTGRES_PASSWORD=synthetic-only', 'POSTGRES_PASSWORD=mismatch') }),
   check('local', confirmed, {}, { file: local + 'PGHOST=other\n' }),
   check('local', confirmed, {}, { file: local + 'DOTENV_CONFIG_PATH=other\n' }),
+  check('local', confirmed, {}, { file: local + 'DOCKER_CONFIG=other\n' }),
   check('local', confirmed, {}, { extraFile: '.env.local' }),
   check('production', confirmed, { BASIC_DOMAIN: 'other.invalid' }),
   check('production', confirmed, { DB_ADMIN_PASSWORD: 'other' }),
   check('production', confirmed, {}, { file: production.replace('b'.repeat(64), 'a'.repeat(64)) }),
   check('production', confirmed, {}, { file: production + 'COMPOSE_FILE=other\n' }),
+  check('production', confirmed, {}, { file: production + 'DOCKER_CONFIG=other\n' }),
 ]) {
   assert.notEqual(failure.status, 0);
   assert.doesNotMatch(failure.calls, / up /);
