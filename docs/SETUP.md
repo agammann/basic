@@ -85,11 +85,11 @@ docker compose up -d --wait db
 pnpm dev
 ```
 
-After pulling a code update, stop the app, run `pnpm install --frozen-lockfile` and `pnpm db:migrate`, then restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
+After pulling a code update, stop the app. If this installation predates generated local database credentials, follow the password rotation steps below before starting Compose or running migrations; the new configuration requires `POSTGRES_PASSWORD` and a matching `DATABASE_URL`. Then run `pnpm install --frozen-lockfile` and `pnpm db:migrate`, and restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
 
 ### Rotate an existing local database password
 
-An existing `basic-data` volume retains its previous database password. Updating the source or creating `.env` does not rotate that role. Stop the app, keep the database available, and make a verified backup using the [operations guide](../OPERATIONS.md) before changing credentials.
+An existing `basic-data` volume retains its previous database password. Updating the source or creating `.env` does not rotate that role. Stop the app, keep the database available, and retain a verified backup before changing credentials. The local restore drill in the [operations guide](../OPERATIONS.md) removes its temporary dump; it does not retain a backup for this rotation.
 
 If `.env` is absent, run `node scripts/setup-env.mjs` to generate a new password and matching URL. If it exists, generate a new password with `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`, keep it private, and set both `POSTGRES_PASSWORD=<new password>` and `DATABASE_URL=postgresql://basic:<same new password>@localhost:55432/basic` in `.env`. The generated alphabet is URL safe. Preserve the other settings and the database volume.
 
