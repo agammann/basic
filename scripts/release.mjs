@@ -93,7 +93,7 @@ export default async ({ github, context, core }) => {
   const heading = '## ' + version + '\n';
   if (!changelog.includes(heading)) throw new Error('Changelog has no release section.');
   const notes = changelog.split(heading)[1].split('\n## ')[0].trim();
-  const body = notes + '\n\nDownload the source ZIP and verify its SHA256 checksum before extracting. Install Node.js 24, pnpm 11.19.0, Git and Docker Compose, then follow the included PostgreSQL setup guide. The package includes the source, MIT license, lockfile, migrations and documentation.\n\n' +
+  const body = notes + '\n\nDownload the source ZIP and verify its SHA256 checksum before extracting. Install Node.js 24.x or 26.13.1 or later within 26.x, pnpm 11.19.0, Git and Docker Compose, then follow the included PostgreSQL setup guide. The package includes the source, MIT license, lockfile, migrations and documentation.\n\n' +
     '[Installation and delivery scope](https://github.com/' + owner + '/' + repo +
     '/blob/' + tag + '/docs/v1.md).';
   await requireCurrentMain();
