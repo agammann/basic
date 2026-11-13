@@ -29,6 +29,8 @@ Local restore drill: `pnpm backup:test` dumps `basic`, creates a disposable `bas
 
 Production restoration procedure: stop the worker and app, preserve the damaged database and current volume, create a NEW database, restore the selected dump with `pg_restore --no-owner --no-acl --exit-on-error`, then apply role grants/migrations as required. Verify counts, readiness, search and the real SDK client against the new database. Switch DATABASE_URL only after validation. Preserve the previous database until rollback is no longer needed.
 
+Those restore flags do not reapply object ownership or grants, and the custom backup omits ACLs. A restore performed as an admin can leave the reader unable to query the catalog; rerunning already recorded migrations does not repeat their grant statements. Recreate and verify the intended roles, ownership, default privileges and grants for the actual installation before switching: the reader must read the catalog and write rate buckets but must not modify catalog profiles, while the operator must retain its intended access. The [synthetic PostgreSQL 18 rehearsal](docs/postgres18-rehearsal.md) demonstrates one fixture-specific recovery, not a validated procedure for every installation.
+
 ## Migration and deployment rollback
 
 Back up before migration. Checksum mismatches stop migration; do not edit an already applied migration. Write a new migration. Each migration is transactional. Avoid destructive schema changes without an independently tested recovery plan. This release has additive migrations only.

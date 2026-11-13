@@ -5,6 +5,7 @@ on:
     paths:
       - scripts/rehearse-postgres-18.mjs
       - docs/postgres18-rehearsal.md
+      - OPERATIONS.md
       - .github/workflows/postgres18-rehearsal.yml
       - deploy/db-init.sh
       - migrations/**
