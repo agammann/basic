@@ -27,7 +27,7 @@ The redesigned Sites website and its D1 deployment are maintained in a separate 
 
 For this checkout, use **Node.js 24.x** or **Node.js 26.13.1 or later within 26.x**, **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. CI tests Node 24.19.0 and 26.13.1 on Linux. The published v1.0.0 source archive uses PostgreSQL 17 and predates Node 26 support; follow its included instructions. This checkout uses PostgreSQL 18 for fresh installations. Existing installations require the assessment in [Local setup](docs/SETUP.md); do not initialize a new volume as a substitute for migration. Port 3400 is the website and 55432 is local PostgreSQL.
 
-Start Docker with Linux containers enabled. Run each command separately and resolve errors before continuing. Use a fresh terminal without another project's database or application-origin settings.
+Start Docker with Linux containers enabled. Run each command separately and resolve errors before continuing. Use a fresh terminal without inherited database, PostgreSQL, Docker, Compose or dotenv selectors, and keep them unset for all subsequent commands. Follow the [setup guide](docs/SETUP.md) if this checkout has additional Next.js environment files or Compose overrides.
 
 ```sh
 git clone https://github.com/agammann/basic.git
