@@ -85,7 +85,7 @@ docker compose up -d --wait db
 pnpm dev
 ```
 
-After pulling a code update, stop the app. If this installation predates generated local database credentials, follow the password rotation steps below before using the normal restart or migration steps; the new configuration requires `POSTGRES_PASSWORD` and a matching `DATABASE_URL`. Then run `pnpm install --frozen-lockfile` and `pnpm db:migrate`, and restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
+After pulling a code update, stop the app and run `pnpm install --frozen-lockfile`. If this installation predates generated local database credentials, follow the password rotation steps below before using the normal restart or migration steps; the new configuration requires `POSTGRES_PASSWORD` and a matching `DATABASE_URL`. Otherwise, run `pnpm db:migrate` and restart. Run `pnpm catalog:curate` when reviewed profiles change. Back up data you need before migrations or catalog maintenance; see [Operations](../OPERATIONS.md). Removing Docker volumes deletes stored catalog data and is not a routine restart step.
 
 ### Rotate an existing local database password
 
