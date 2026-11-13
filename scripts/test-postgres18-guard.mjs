@@ -135,6 +135,40 @@ try {
   cmd(['stop', prodRestart]);
   console.log('PASS: production initialization, role setup, backup/restore and restart');
 
+  const slowProject = `${prefix}slowinit`;
+  const slowFile = join(fixtureDirectory, 'compose-slow.yaml');
+  const slowScript = resolve('tests/fixtures/pg18-slow-init.sh');
+  writeFileSync(slowFile, `services:\n  db:\n    ports: !override ["127.0.0.1::5432"]\n    volumes:\n      - ${JSON.stringify(`${slowScript}:/docker-entrypoint-initdb.d/yy-slow-init.sh:ro`)}\n`);
+  const slowInit = [...compose(slowProject, 'compose.yaml', true), '-f', slowFile];
+  cmd([...slowInit, 'up', '-d', '--no-deps', 'db']);
+  const slow = cmd([...slowInit, 'ps', '-q', 'db']).stdout.trim();
+  assert.match(slow, /^[a-f0-9]{64}$/);
+  containers.push(slow);
+  let started = false, observedHealthCheck = false;
+  for (let i = 0; i < 30; i++) {
+    const test = cmd(['exec', slow, 'test', '-f', '/var/lib/postgresql/18/docker/.synthetic-slow-init-started'], { allowFailure: true });
+    if (test.status === 0) { started = true; break; }
+    await delay(500);
+  }
+  assert.ok(started, 'Slow fixture did not enter initialization');
+  for (let i = 0; i < 11; i++) {
+    const finished = cmd(['exec', slow, 'test', '-f', '/var/lib/postgresql/18/docker/.synthetic-slow-init-finished'], { allowFailure: true });
+    if (finished.status === 0) break;
+    const health = JSON.parse(cmd(['inspect', '--format', '{{json .State.Health}}', slow]).stdout);
+    assert.notEqual(health.Status, 'healthy', 'Temporary init server was reported healthy');
+    if (health.Log.length > 0) observedHealthCheck = true;
+    await delay(1000);
+  }
+  assert.ok(observedHealthCheck, 'Expected a real Docker healthcheck during slow initialization');
+  cmd([...slowInit, 'up', '-d', '--wait', 'db']);
+  const slowNormal = [...compose(slowProject, 'compose.yaml'), '-f', slowFile];
+  cmd([...slowNormal, 'up', '-d', '--force-recreate', '--wait', 'db']);
+  const normal = cmd([...slowNormal, 'ps', '-q', 'db']).stdout.trim();
+  containers.push(normal);
+  assert.equal(cmd(['exec', normal, 'psql', '-U', 'basic', '-d', 'basic', '-Atc', 'SELECT value FROM synthetic_slow_init']).stdout.trim(), 'completed');
+  cmd(['stop', normal]);
+  console.log('PASS: slow initialization stays unhealthy until final TCP server is ready, then survives normal recreation');
+
   const prodLegacy = `${prefix}prodlegacy`;
   const prodOld = fixtureVolume(prodLegacy, 'pgdata');
   mutate(prodOld, 'printf old-production > /fixture/sentinel');

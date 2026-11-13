@@ -26,7 +26,7 @@ services:
     networks: [private]
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U basic_admin -d basic"]
+      test: ["CMD-SHELL", "test -f /var/lib/postgresql/18/docker/.basic-init-complete && pg_isready -h 127.0.0.1 -U basic_admin -d basic"]
       interval: 10s
       timeout: 5s
       retries: 10

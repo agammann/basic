@@ -36,7 +36,7 @@ jobs:
           POSTGRES_DB: basic
         ports: ["5432:5432"]
         options: >-
-          --health-cmd "pg_isready -U basic -d basic"
+          --health-cmd "pg_isready -h 127.0.0.1 -U basic -d basic"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       DATABASE_URL: postgresql://basic:basic_ci_only@localhost:5432/basic
@@ -123,7 +123,7 @@ jobs:
           POSTGRES_DB: basic
         ports: ["5432:5432"]
         options: >-
-          --health-cmd "pg_isready -U basic -d basic"
+          --health-cmd "pg_isready -h 127.0.0.1 -U basic -d basic"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       DATABASE_URL: postgresql://basic:basic_ci_only@localhost:5432/basic
