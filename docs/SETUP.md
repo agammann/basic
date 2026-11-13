@@ -44,7 +44,7 @@ Generate local credentials before starting Docker:
 node scripts/setup-env.mjs
 ```
 
-The script creates `.env` with a unique PostgreSQL password and a matching `DATABASE_URL`, then preserves that file on later runs. Keep it private. The application and operator load `.env` through dotenv; a Next.js `.env.local` file is not a substitute for operator configuration. Existing shell environment variables take precedence, so use a clean terminal or deliberately set the Basic values if another project's settings are present.
+The script creates `.env` with a unique PostgreSQL password and a matching `DATABASE_URL`, then preserves that file on later runs. Keep it private. The application and operator load `.env` through dotenv; a Next.js `.env.local` file is not a substitute for operator configuration. Existing shell environment variables take precedence, so use a clean terminal or deliberately set the Basic values if another project's settings are present. Setting `DOTENV_CONFIG_OVERRIDE=true` explicitly gives `.env` precedence; `false` preserves the shell values, including empty values. Dotenv 17.4.2 treated the string `false` as enabled, so review that setting when upgrading.
 
 The generated connection uses database `basic` at `localhost:55432`. Compose reads the same password from `.env` and publishes PostgreSQL only on loopback. Production uses separate roles and configuration described in [Deployment](../DEPLOYMENT.md).
 
