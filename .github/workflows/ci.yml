@@ -209,11 +209,11 @@ jobs:
             const version = require('./package.json').version;
             const { default: publish } = await import(pathToFileURL(resolve('scripts/release.mjs')).href);
             const messages = [];
-            const github = { rest: { repos: { listReleases() {} } }, paginate: async () => [{tag_name: 'v' + version, draft: false}] };
-            const context = {eventName: 'push', ref: 'refs/heads/main', sha: 'a'.repeat(40), repo: {owner: 'fixture', repo: 'fixture'}};
-            await publish({github, context, core: {info: message => messages.push(message)}});
+            const fixtureGithub = { rest: { repos: { listReleases() {} } }, paginate: async () => [{tag_name: 'v' + version, draft: false}] };
+            const fixtureContext = {eventName: 'push', ref: 'refs/heads/main', sha: 'a'.repeat(40), repo: {owner: 'fixture', repo: 'fixture'}};
+            await publish({github: fixtureGithub, context: fixtureContext, core: {info: message => messages.push(message)}});
             assert(messages.some(message => message.includes('already published; leaving it unchanged')));
-            await assert.rejects(publish({github, context: {...context, eventName: 'pull_request'}, core: {info() {}}}));
+            await assert.rejects(publish({github: fixtureGithub, context: {...fixtureContext, eventName: 'pull_request'}, core: {info() {}}}));
   artifact-missing-guard:
     runs-on: ubuntu-latest
     timeout-minutes: 5
