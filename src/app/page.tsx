@@ -58,7 +58,7 @@ export default async function Home({
       <p className="lead">
         Search MCP servers, understand setup, and inspect the evidence.
       </p>
-      <form action="/" id="search">
+      <form key={JSON.stringify([q, f, params.auto === "off"])} action="/" id="search">
         <div className="searchbar">
           <input
             name="q"

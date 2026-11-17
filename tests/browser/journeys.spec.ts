@@ -1,4 +1,14 @@
 import { test, expect } from "@playwright/test";
+
+test.beforeAll(async () => {
+  // Both projects share the application's real 120-request minute bucket.
+  // Navigation prefetches count too; use a fresh window instead of raising it.
+  test.setTimeout(65_000);
+  await new Promise((resolve) =>
+    setTimeout(resolve, 61_000 - (Date.now() % 60_000)),
+  );
+});
+
 test("search to sourced profile and copyable setup", async ({
   page,
   context,
@@ -112,4 +122,66 @@ test("desktop and mobile render evidence and keyboard navigation", async ({
     path: `work/qa-${testInfo.project.name}.png`,
     fullPage: true,
   });
+});
+
+test("URL navigation resets search controls across clear, preset, back and browse", async ({
+  page,
+}) => {
+  const query = "I need a tool for quantum gardening";
+  await page.goto(
+    "/?" +
+      new URLSearchParams({
+        q: query,
+        category: "research",
+        setup: "local",
+        auth: "none",
+        pricing: "free",
+        verification: "not-tested",
+        restrictedRead: "true",
+        includeUnknown: "true",
+        auto: "off",
+      }),
+  );
+  const task = page.getByLabel("Describe your task");
+  const auto = page.getByLabel("Turn off inferred filters");
+  const selectLabels = [
+    "Category",
+    "Setup",
+    "Authentication",
+    "Pricing",
+    "Evidence",
+  ];
+  await expect(page.getByLabel("Setup", { exact: true })).toHaveValue("local");
+  await page.getByRole("link", { name: "Clear filters", exact: true }).click();
+  await expect(page).toHaveURL(/auto=off/);
+  await expect(task).toHaveValue(query);
+  for (const label of selectLabels)
+    await expect(page.getByLabel(label, { exact: true })).toHaveValue("");
+  await expect(
+    page.getByLabel("Restricted read credentials documented"),
+  ).not.toBeChecked();
+  await expect(
+    page.getByLabel("Include unknown requirements"),
+  ).not.toBeChecked();
+  await expect(auto).toBeChecked();
+  await page
+    .getByRole("link", { name: "Find programming documentation", exact: true })
+    .click();
+  await expect(task).toHaveValue("Find programming documentation");
+  await expect(auto).not.toBeChecked();
+  await expect(
+    page.getByRole("heading", { name: "Microsoft Learn", exact: true }),
+  ).toBeVisible();
+  await page.goBack();
+  await expect(task).toHaveValue(query);
+  await expect(auto).toBeChecked();
+  for (const label of selectLabels)
+    await expect(page.getByLabel(label, { exact: true })).toHaveValue("");
+  await page
+    .getByRole("link", { name: "Browse the catalog", exact: true })
+    .click();
+  await expect(task).toHaveValue("");
+  await expect(auto).not.toBeChecked();
+  for (const label of selectLabels)
+    await expect(page.getByLabel(label, { exact: true })).toHaveValue("");
 });

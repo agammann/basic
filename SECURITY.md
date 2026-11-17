@@ -14,6 +14,10 @@ The production worker's dedicated egress subnet must have `deploy/worker-egress.
 
 HTTP applies Host/Origin allowlists, request URL/body bounds, database-backed rate limits, no-store API responses, X-Content-Type-Options, frame denial, Referrer-Policy, Permissions-Policy and CSP. Caddy adds HTTPS/HSTS and an ingress body limit. Never expose the Node port directly in production when TRUST_PROXY=true; Caddy overwrites X-Basic-Client-IP. Missing proxy identity uses a shared bucket rather than trusting arbitrary forwarded headers.
 
+MCP tool arguments are capped at 1,000 combined array elements and object members before schema validation, using the explicit SDK option required by [GHSA-46jr-4wx8-v453](https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-46jr-4wx8-v453). Installing SDK 1.32.0 alone does not enable that protection. The existing 32 KiB request-body limit remains in force.
+
+The v2 toolchain includes patched Vite/Rolldown for [GHSA-p4f5-76q4-ffq7](https://github.com/vitejs/vite/security/advisories/GHSA-p4f5-76q4-ffq7), which concerns explicitly network-exposed development servers, and a patched Next.js baseline for [GHSA-mfr8-8qww-v76h](https://github.com/vercel/next.js/security/advisories/GHSA-mfr8-8qww-v76h), which has specific nested-cache/root-param prerequisites. No vulnerable cache pattern or production exploitation was demonstrated in Basic. Registry audit results do not replace primary upstream advisory review.
+
 The CSP allows inline framework scripts/styles; a nonce-based strict policy is a future hardening item. There are no app accounts or cookies. The MCP interface is intentionally public and does not enable writes to discovered services.
 
 Report a suspected malicious listing to the repository maintainer without posting secrets or exploit credentials. Operators can unpublish a profile immediately using the curation file and retain its history for investigation. Do not put sensitive vulnerability details in a public issue; request a private reporting channel if one is not configured.

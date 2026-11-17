@@ -176,3 +176,39 @@ it("uses the actual Streamable HTTP SDK with the application route and fixture S
     await client.close();
   }
 });
+
+it("rejects excessive tool argument elements through HTTP before catalog SQL", async () => {
+  const client = new Client({
+    name: "basic-element-limit-test",
+    version: "1.0.0",
+  });
+  const transport = new StreamableHTTPClientTransport(
+    new URL("http://localhost:3400/mcp"),
+    {
+      fetch: async (input, init) => {
+        const req = new Request(input, init);
+        if (req.method === "POST") return POST(req);
+        if (req.method === "DELETE") return DELETE();
+        return GET();
+      },
+    },
+  );
+  try {
+    await client.connect(transport);
+    sql.mockClear();
+    const result = await client.callTool({
+      name: "search_servers",
+      arguments: { query: "documentation", padding: Array(1001).fill(0) },
+    });
+    expect(result.isError).toBe(true);
+    expect(JSON.stringify(result.content)).toMatch(/maximum.*1000.*elements/);
+    expect(
+      sql.mock.calls.some(
+        ([parts]) =>
+          Array.isArray(parts) && parts.join("?").startsWith("SELECT p.data"),
+      ),
+    ).toBe(false);
+  } finally {
+    await client.close();
+  }
+});

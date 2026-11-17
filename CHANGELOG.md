@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0
+
+- **Breaking installation boundary:** deliver PostgreSQL 18 for fresh installations with explicit fresh-only confirmation, preserved legacy-volume refusal, initialization/cluster markers and guarded restart. Existing PostgreSQL 17 installations must retain their previous source and storage mapping until a separately reviewed migration; this release does not perform that migration.
+- Deliver the already-authored Node 24/26 verification, environment-selector guards, PostgreSQL outage recovery and Caddy updates in a new checksummed source archive. Preserve v1.0.0 and its PostgreSQL 17 instructions unchanged.
+- Keep search controls synchronized with the active URL after Clear filters, preset, back and browse navigation; add desktop/mobile browser regression coverage.
+- Enable the SDK's 1,000-element argument ceiling alongside the existing request-body cap, with an HTTP contract regression. Patch the measured Next.js cache advisory and Vite development-tool advisory through compatible pinned updates; no production exploitation or third-party safety claim.
+- Preserve the 30 source-dated profiles, strict same-deployment constraints, explicit unknowns, evidence semantics and all three read-only catalog tools. The independent hosted D1 edition is not replaced by this PostgreSQL release.
+
 ## 1.0.0
 
 - Deliver the PostgreSQL catalog/search application as a versioned source ZIP with a SHA256 checksum, lockfile, migrations, setup guides and MIT license.

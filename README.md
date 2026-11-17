@@ -8,7 +8,7 @@ The hosted website runs on OpenAI Sites and is public. Anyone with the link can 
 
 Basic is a task-based search engine for MCP servers and tools. It combines official MCP Registry metadata with reviewed publisher sources, explicit unknown requirements, client setup templates and dated protocol observations. This repository contains the original PostgreSQL application, three read-only MCP tools and catalog operator tooling; no paid AI API or LLM key is needed. The hosted Sites edition is a separate deployment using D1 storage and reviewed catalog snapshots.
 
-This is an initial developer-productivity release, not a safety certification. Initialization and listing tools do not prove functional capability. See [How checks work](docs/CHECKS.md), [architecture](ARCHITECTURE.md), [security](SECURITY.md), and [operations](OPERATIONS.md).
+Basic is a developer-productivity catalog, not a safety certification. Initialization and listing tools do not prove functional capability. See [How checks work](docs/CHECKS.md), [architecture](ARCHITECTURE.md), [security](SECURITY.md), and [operations](OPERATIONS.md).
 
 ## Start here
 
@@ -25,7 +25,7 @@ The redesigned Sites website and its D1 deployment are maintained in a separate 
 
 ## Quick start for developers
 
-For this checkout, use **Node.js 24.x** or **Node.js 26.13.1 or later within 26.x**, **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. CI tests Node 24.19.0 and 26.13.1 on Linux. The published v1.0.0 source archive uses PostgreSQL 17 and predates Node 26 support; follow its included instructions. This checkout uses PostgreSQL 18 for fresh installations. Existing installations require the assessment in [Local setup](docs/SETUP.md); do not initialize a new volume as a substitute for migration. Port 3400 is the website and 55432 is local PostgreSQL.
+For v2.0.0, use **Node.js 24.x** or **Node.js 26.13.1 or later within 26.x**, **pnpm 11.19.0**, Git, and Docker Engine/Desktop with Compose v2. CI tests Node 24.19.0 and 26.13.1 on Linux. **Breaking installation boundary:** v2 uses PostgreSQL 18 and guarded fresh initialization. Existing PostgreSQL 17 installations must stay on their previous source and mapping until a separately reviewed migration; do not initialize a new volume as a substitute. The immutable v1.0.0 source archive retains PostgreSQL 17 and its included instructions. See [Local setup](docs/SETUP.md). Port 3400 is the website and 55432 is local PostgreSQL.
 
 Start Docker with Linux containers enabled. Run each command separately and resolve errors before continuing. Use a fresh terminal without inherited database, PostgreSQL, Docker, Compose or dotenv selectors, and keep them unset for all subsequent commands. Follow the [setup guide](docs/SETUP.md) if this checkout has additional Next.js environment files or Compose overrides.
 
@@ -106,6 +106,6 @@ For this repository's PostgreSQL application, see [PROGRESS.md](PROGRESS.md) and
 
 Basic's original source and documentation are available under the [MIT license](LICENSE). Third-party packages, catalog metadata and referenced publisher material retain their respective terms. Basic does not grant rights to third-party services or their content.
 
-The [v1 delivery guide](docs/v1.md) covers the source ZIP, checksum verification, local installation, the supported search/MCP workflow and recovery limits. The separate hosted Sites edition follows its own deployment process.
+The [source delivery guide](docs/v1.md) covers the v2 source ZIP, checksum verification, guarded fresh installation, the supported search/MCP workflow and recovery limits. Its established documentation path is retained. The separate hosted Sites edition follows its own deployment process.
 
 `pnpm start` serves the standalone production build on loopback port 3400. Set BASIC_HOST and PORT explicitly if you need a different local binding. Docker uses its own container listener and private production network. Routine GitHub Actions validation uses stored source snapshots and PostgreSQL fixtures, with no live publisher checks.
