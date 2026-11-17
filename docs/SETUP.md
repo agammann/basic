@@ -122,5 +122,5 @@ Still in that **previous PostgreSQL 17 checkout**, run `docker compose up -d --n
 | `/ready` returns 503 with `unavailable` | Confirm database connectivity and migrations. `/health` alone does not prove database readiness. |
 | Port 3400 is already in use | Stop your earlier Basic server before starting another one. |
 | `pnpm start` reports missing build files | Run `pnpm build` first. Stop `pnpm dev` before starting production on the same port. |
-| `applied-migration-changed` | Restore the original applied migration and create a new migration for the change. Do not delete migration history. |
+| `applied-migration-changed` | Preserve the database, verified backup and original checkout. Migration hashes cover exact file bytes: switching between a CRLF checkout and the LF source ZIP can reject otherwise unchanged SQL. Return to the original bytes and review the distribution/OS transition separately; do not rewrite history, mark migrations applied, or delete storage to bypass the refusal. For an intentional SQL change, retain the applied file and add a new migration. |
 | Hosted website returns 401 | The Sites edition is intended to be public. Confirm the URL above and report an unexpected access prompt; local database commands do not change hosted access. |
